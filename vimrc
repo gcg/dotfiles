@@ -104,4 +104,4 @@ set wildignore+=*/vendor/**
 set wildignore+=*/public/**
 set wildignore+=*/node_modules/**
 
-
+let NERDTreeShowHidden=1
