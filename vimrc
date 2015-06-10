@@ -55,6 +55,7 @@ nmap 50 <c-w>=
 nmap 75 :vertical resize 120<cr>
 
 nmap <C-b> :NERDTreeToggle<cr>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 set showcmd
 
@@ -105,3 +106,21 @@ set wildignore+=*/public/**
 set wildignore+=*/node_modules/**
 
 let NERDTreeShowHidden=1
+
+"airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled=1
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+"tagbar
+nmap <F8> :TagbarToggle<CR>
+
