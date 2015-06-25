@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set number
+set relativenumber
 set nocompatible 
 set t_Co=256
 set mouse=a
@@ -119,8 +120,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
+let g:syntastic_html_checkers=['']
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
 
+
+let g:gitgutter_max_signs = 2000
+
+let g:ragtag_global_maps = 1 
