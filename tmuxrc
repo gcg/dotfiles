@@ -1,0 +1,73 @@
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# listen for activity on all windows
+set -g bell-action any
+
+# start window indexing at one instead of zero
+set -g base-index 1
+set -g renumber-windows on
+set-option -g allow-rename off
+
+
+# environment
+set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
+
+# statusbar --------------------------------------------------------------
+set -g window-status-format "#I:#W"
+set -g window-status-current-format "#I:#W *"
+
+set -g status-keys vi
+bind-key -t vi-edit Up history-up
+bind-key -t vi-edit Down history-down
+
+set -g status-interval 1
+set -g status-justify left
+
+# default statusbar colors
+set -g status-fg white
+set -g status-bg default
+
+# default window title colors
+set-window-option -g window-status-fg white
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg white
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr dim
+
+# command/message line colors
+set -g message-fg white
+set -g message-bg black
+set -g message-attr bright
+
+# mouse select
+#set -g mouse-select-pane on
+set -g mouse on
+
+# reload config
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+# shiny status
+set -g status-right-length 200
+set -g status-right '| ♫ #(~/.tmux/bin/tmux-spotify) | Online: #{online_status} | Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M '
+
+# panes and window starts
+#bind c new-window -c "#{pane_current_path}"
+bind '"' split-window -c "#{pane_current_path}"
+bind '%' split-window -h -c "#{pane_current_path}"
+
+set -g @tpm_plugins '             \
+  tmux-plugins/tpm                \
+  tmux-plugins/tmux-sensible      \
+  tmux-plugins/tmux-pain-control      \
+  tmux-plugins/tmux-sessionist      \
+  tmux-plugins/tmux-battery      \
+  tmux-plugins/tmux-resurrect      \
+  tmux-plugins/tmux-online-status      \
+'
+
+run-shell '~/.tmux/plugins/tpm/tpm'
