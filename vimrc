@@ -10,7 +10,7 @@ syntax enable
 colorscheme monokai
 
 set guifont=Monaco\ for\ Powerline:h16
-set linespace=15
+set linespace=12
 set tabstop=4
 set smarttab
 set showmode
@@ -33,6 +33,15 @@ let mapleader = ","
 let g:mapleader = ","
 
 nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+nmap <leader>qa :qa<cr>
+nmap <leader>q! :q!<cr>
+
+
+nmap <leader>gca :Gcommit -a<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gl :Gpull<cr>
+nmap <leader>gst :Gstatus<cr>
 
 " Down is really the next line
 nnoremap j gj
@@ -45,15 +54,19 @@ imap jj <esc>
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 "easier window navigation  
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+"nmap <C-h> <C-w>h
+"nmap <C-j> <C-w>j
+"nmap <C-k> <C-w>k
+"nmap <C-l> <C-w>l
 
-nmap <C-v> :vertical resize +5<cr>
-nmap 25 :vertical resize 40<cr>
-nmap 50 <c-w>=
-nmap 75 :vertical resize 120<cr>
+"nmap <C-v> :vertical resize +5<cr>
+"nmap <C-h> :res +5<cr>
+"nmap 25 :vertical resize 40<cr>
+"nmap 50 <c-w>=
+"nmap 75 :vertical resize 120<cr>
+
+
+set clipboard=unnamed
 
 nmap <C-b> :NERDTreeToggle<cr>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -71,6 +84,7 @@ highlight Search cterm=underline
 
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
+set noswapfile
 
 let g:EasyMotion_leader_key = '<Leader>'
 
@@ -125,7 +139,36 @@ let g:syntastic_html_checkers=['']
 "tagbar
 nmap <F8> :TagbarToggle<CR>
 
+let g:tagbar_type_php  = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+            \ ]
+            \ }
 
 let g:gitgutter_max_signs = 2000
 
 let g:ragtag_global_maps = 1 
+
+"phpfmt
+let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1)
+let g:phpfmt_php_path = "php"
+let g:phpfmt_enable_default_mapping = 1
+
+"vim-jsx (react)
+let g:jsx_ext_required = 1
+
+"YCM
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+"Vim-go
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
