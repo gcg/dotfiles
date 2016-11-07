@@ -19,6 +19,8 @@ set -g window-status-format "#I:#W"
 set -g window-status-current-format "#I:#W *"
 
 set -g status-keys vi
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
 bind-key -t vi-edit Up history-up
 bind-key -t vi-edit Down history-down
 
@@ -53,7 +55,7 @@ bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 # shiny status
 set -g status-right-length 200
-set -g status-right '| ♫ #(~/.tmux/bin/tmux-spotify) | Online: #{online_status} | Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M '
+set -g status-right 'Online: #{online_status} | Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M '
 
 # panes and window starts
 #bind c new-window -c "#{pane_current_path}"
