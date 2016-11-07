@@ -1,4 +1,35 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'StanAngeloff/php.vim'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'rhysd/vim-go-impl'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'jiangmiao/auto-pairs'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'tpope/vim-fugitive'
+Plug 'jwalton512/vim-blade'
+Plug 'honza/vim-snippets'
+Plug 'mileszs/ack.vim'
+Plug 'beanworks/vim-phpfmt'
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'editorconfig/editorconfig-vim'
+
+
+" Add plugins to &runtimepath
+call plug#end()
+
 syntax on
 filetype plugin indent on
 set number
@@ -38,7 +69,7 @@ nmap <leader>qa :qa<cr>
 nmap <leader>q! :q!<cr>
 
 
-nmap <leader>gca :Gcommit -a<cr>
+nmap <leader>gca :Gcommit -a -S<cr>
 nmap <leader>gp :Gpush<cr>
 nmap <leader>gl :Gpull<cr>
 nmap <leader>gst :Gstatus<cr>
@@ -131,10 +162,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -159,8 +193,15 @@ let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1)
 let g:phpfmt_php_path = "php"
 let g:phpfmt_enable_default_mapping = 1
 
+"php-cs-fixer
+let g:php_cs_fixer_level = "symfony"
+let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_php_path = "php"
+let g:php_cs_fixer_enable_default_mapping = 1
+
+
 "vim-jsx (react)
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0
 
 "YCM
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -170,5 +211,14 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+
+"mouse support for fullscreen
+set ttymouse=sgr
+
+"markdown folding
+let g:vim_markdown_folding_disabled = 1
+
+
+
 
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
