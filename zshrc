@@ -21,15 +21,15 @@ alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 
 # Gopath settings
-export GOPATH=$HOME/Workspace/Go
+export GOPATH=$HOME/Work
 export PATH=$PATH:$GOPATH/bin
 
 
 # PHP For OSX
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+#export PATH="/usr/local/heroku/bin:$PATH"
 
 # tmux scripts to the bin
 export PATH=$PATH:$HOME/.tmux/bin
@@ -39,7 +39,10 @@ alias up='vagrant up'
 alias down='vagrant halt'
 alias destroy='vagrant destroy'
 alias dev="ssh dev.gcg.me"
-alias vupdate='for i in ~/.vim/bundle/*; do git -C $i pull origin master; done'
+alias work="cd ~/Work/src/github.com/"
+
+alias andy='./gradlew assembleRelease && ./gradlew publishApkRelease'
+alias andy_device='./gradlew assembleRelease && adb install -r app/build/outputs/apk/app-release.apk'
 
 DISABLE_AUTO_TITLE=true
 
@@ -52,10 +55,22 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH="~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools:${PATH}"
 
-REACT_EDITOR=subl
+export REACT_EDITOR=vim
 
-export NVM_DIR="/Users/gcg/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export EDITOR=vim
 
+export HOMEBREW_GITHUB_API_TOKEN="3e4def9c84587164bb6105ebd0a7cf21e936373e"
+
+export PATH=~/.composer/vendor/bin:$PATH
+
+export PATH=~/Library/Python/2.7/bin:$PATH
+
+#export NVM_DIR="/Users/gcg/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export EVENT_NOKQUEUE=1
+export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$PATH"
