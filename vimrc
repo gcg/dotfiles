@@ -169,6 +169,7 @@ let g:syntastic_html_checkers=['']
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -196,6 +197,7 @@ let g:phpfmt_enable_default_mapping = 1
 "php-cs-fixer
 let g:php_cs_fixer_level = "symfony"
 let g:php_cs_fixer_config = "default"
+let g:syntastic_php_checkers = ['php', './vendor/bin/phpcs', './vendor/bin/phpmd']
 let g:php_cs_fixer_php_path = "php"
 let g:php_cs_fixer_enable_default_mapping = 1
 
@@ -205,6 +207,7 @@ let g:jsx_ext_required = 0
 
 "YCM
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_path_to_python_interpreter = "/usr/local/bin/python"
 
 "Vim-go
 au FileType go nmap <leader>r <Plug>(go-run)
