@@ -15,7 +15,6 @@ Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'jiangmiao/auto-pairs'
-Plug 'stephpy/vim-php-cs-fixer'
 Plug 'tpope/vim-fugitive'
 Plug 'jwalton512/vim-blade'
 Plug 'honza/vim-snippets'
@@ -59,65 +58,58 @@ set timeout timeoutlen=200 ttimeoutlen=100
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set autowrite  "Save on buffer switch
+set showcmd
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set noswapfile
+set clipboard=unnamed
+set wildignore+=*/vendor/**         " I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
+set ttymouse=sgr "mouse support for fullscreen
 
 let mapleader = ","
 let g:mapleader = ","
+let g:EasyMotion_leader_key = '<Leader>'
 
+
+" Vim-Markdown
+let g:vim_markdown_folding_disabled = 1 "markdown folding
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeShowHidden=1
+
+
+" Mappings
+nmap :sp :rightbelow sp<cr>
+nmap vs :vsplit<cr>
+nmap sp :split<cr>
+nmap :bp :BufSurfBack<cr>
+nmap :bn :BufSurfForward<cr>
+nmap <C-b> :NERDTreeToggle<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>qa :qa<cr>
 nmap <leader>q! :q!<cr>
-
-
 nmap <leader>gca :Gcommit -a -S<cr>
 nmap <leader>gp :Gpush<cr>
 nmap <leader>gl :Gpull<cr>
 nmap <leader>gst :Gstatus<cr>
 
-" Down is really the next line
-nnoremap j gj
+nnoremap j gj 
 nnoremap k gk
-
-"Easy escaping to normal model
 imap jj <esc>
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
 
 "Auto change directory to match current file ,cd
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
-"easier window navigation  
-"nmap <C-h> <C-w>h
-"nmap <C-j> <C-w>j
-"nmap <C-k> <C-w>k
-"nmap <C-l> <C-w>l
-
-"nmap <C-v> :vertical resize +5<cr>
-"nmap <C-h> :res +5<cr>
-"nmap 25 :vertical resize 40<cr>
-"nmap 50 <c-w>=
-"nmap 75 :vertical resize 120<cr>
-
-
-set clipboard=unnamed
-
-nmap <C-b> :NERDTreeToggle<cr>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-set showcmd
-
-nmap :sp :rightbelow sp<cr>
-nmap vs :vsplit<cr>
-nmap sp :split<cr>
-
-nmap :bp :BufSurfBack<cr>
-nmap :bn :BufSurfForward<cr>
-
-highlight Search cterm=underline
-
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set noswapfile
-
-let g:EasyMotion_leader_key = '<Leader>'
+" Familiar commands for file/symbol browsing
+map <D-p> :CtrlP<cr>
+map <C-r> :CtrlPBufTag<cr>
 
 "Powerline
 let g:Powerline_symbols = 'fancy'
@@ -125,33 +117,16 @@ set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+" Search
 autocmd cursorhold * set nohlsearch
 autocmd cursormoved * set hlsearch
-
-" Remove search results
-command! H let @/=""
-
+set incsearch
+highlight Search cterm=underline
+command! H let @/="" " Remove search results
 autocmd BufWritePre *.php :%s/\s\+$//e
-
-nmap <leader>lr :e app/routes.php<cr>
-nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
-nmap <leader>lcd :e app/config/database.php<cr>
-nmap <leader>lc :e composer.json<cr>
 
 " do not continue comments 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Familiar commands for file/symbol browsing
-map <D-p> :CtrlP<cr>
-map <C-r> :CtrlPBufTag<cr>
-
-
-" I don't want to pull up these folders/files when calling CtrlP
-set wildignore+=*/vendor/**
-set wildignore+=*/public/**
-set wildignore+=*/node_modules/**
-
-let NERDTreeShowHidden=1
 
 "airline
 let g:airline#extensions#tabline#enabled = 1
@@ -166,14 +141,13 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-let g:syntastic_php_checkers = ['php']
+let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
 
-"tagbar
-nmap <F8> :TagbarToggle<CR>
-
+" Tagbar
 let g:tagbar_type_php  = {
             \ 'ctagstype' : 'php',
             \ 'kinds'     : [
@@ -185,22 +159,14 @@ let g:tagbar_type_php  = {
             \ ]
             \ }
 
+" Gitgutter
 let g:gitgutter_max_signs = 2000
-
 let g:ragtag_global_maps = 1 
 
 "phpfmt
 let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1)
 let g:phpfmt_php_path = "php"
 let g:phpfmt_enable_default_mapping = 1
-
-"php-cs-fixer
-let g:php_cs_fixer_level = "symfony"
-let g:php_cs_fixer_config = "default"
-let g:syntastic_php_checkers = ['php', './vendor/bin/phpcs', './vendor/bin/phpmd']
-let g:php_cs_fixer_php_path = "php"
-let g:php_cs_fixer_enable_default_mapping = 1
-
 
 "vim-jsx (react)
 let g:jsx_ext_required = 0
@@ -215,13 +181,54 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
-"mouse support for fullscreen
-set ttymouse=sgr
-
-"markdown folding
-let g:vim_markdown_folding_disabled = 1
-
-
 
 
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
+
+
+" Tips & Tricks. 
+
+" General 
+" Select anything inside two things like '' or () type vi' or vi( You can change the thing inside of two things with ci' or delete it with di' 
+" m{key} to bookmark some line and `{key} to move to that bookmark
+" P to paste above, p to paste below. yy to yank line, dd to delete line. 
+
+" Moving around
+" N line above : nk
+" N line below : nj
+" Go to Nth line: NG
+" CTRL E : scroll window
+" CTRL Y: scroll up
+" H: move cursor to top
+" M: move cursor to the Middle
+" L: move cursor to the bottom of the window
+" w:move one word
+" b: move one word backwords
+" e: move one word at the end of the word
+" I : set insert mode at the beginning of the line
+" A: set insert mode at the end of the line
+" zz to center the file
+
+" Ctags 
+" :tag -> searches 
+" :!ctags -R -> regens 
+" :tn -> next tag
+" :ts -> select tag from list
+" :tp -> prev tag
+" gd will take you to the local declaration.
+" gD will take you to the global declaration.
+" g* search for the word under the cursor (like *, but g* on 'rain' will find words like 'rainbow').
+" g# same as g* but in backward direction.
+" g] and other commands will jump to a tag definition (a tag can be a function or variable name, or more).
+
+" Complete 
+" CTRL X -> completion mode
+" + CTRL o -> complete language methods
+" + CTRL l -> complete line 
+" + CTRL f -> complete filename
+" CTRL p -> word complete previous
+" CTRL n -> word complete next 
+
+" Search & Replace 
+" :s/{search}/{replace} for single line :s% for whole file. 
+
