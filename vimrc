@@ -24,6 +24,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'SirVer/ultisnips'
 
 
 " Add plugins to &runtimepath
@@ -64,7 +65,7 @@ set directory=~/.vim/swap//
 set noswapfile
 set clipboard=unnamed
 set wildignore+=*/vendor/**         " I don't want to pull up these folders/files when calling CtrlP
-set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP 
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
 set ttymouse=sgr "mouse support for fullscreen
 
@@ -108,7 +109,7 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Familiar commands for file/symbol browsing
-map <D-p> :CtrlP<cr>
+map <D-p> :CtrlP<cr> 
 map <C-r> :CtrlPBufTag<cr>
 
 "Powerline
@@ -141,11 +142,13 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
+let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
+let g:syntastic_php_phpcs_args = '--standard=PSR2'
 
 " Tagbar
 let g:tagbar_type_php  = {
@@ -181,9 +184,12 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
-
-
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 " Tips & Tricks. 
