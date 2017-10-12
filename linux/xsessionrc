@@ -1,0 +1,20 @@
+#!/bin/bash
+feh --bg-scale /home/gcg/Pictures/wave.png &
+# Load resources
+
+xrdb -merge .Xresources
+
+# Set up an icon tray
+stalonetray &
+
+# Fire up apps
+gnome-power-manager & 
+xscreensaver -no-splash &
+polychromatic-tray-applet &
+dropbox &
+
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &
+fi
+
+exec xmonad
