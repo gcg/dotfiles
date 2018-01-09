@@ -5,6 +5,7 @@ export ZSH=/home/gcg/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+#ZSH_THEME="spaceship"
 ZSH_THEME="spaceship"
 
 plugins=(git github go golang redis-cli battery bower bundler cake capistrano composer npm rails zsh_reload laravel4 laravel5 git-flow git-flow-completion docker)
@@ -17,6 +18,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
+alias i3rc="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 alias android-studio="$HOME/Apps/android-studio/bin/studio.sh"
@@ -77,11 +79,14 @@ export PATH="$HOME/Apps/android-studio:$PATH"
 
 export GPG_TTY=$(tty)
 
-source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 export PATH=$PATH:/home/gcg/.local/bin
 
-source '/home/gcg/.azure/cli/az.completion'
+export PATH="$PATH:$HOME/.npm/bin"
+
+
+
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 
 source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

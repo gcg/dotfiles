@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'Valloric/YouCompleteMe'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'StanAngeloff/php.vim'
@@ -26,6 +25,11 @@ Plug 'plasticboy/vim-markdown'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 
 " Add plugins to &runtimepath
@@ -99,6 +103,7 @@ nmap <leader>gp :Gpush<cr>
 nmap <leader>gl :Gpull<cr>
 nmap <leader>gst :Gstatus<cr>
 nmap <leader>c :!composer install <cr>
+nmap cn :cn<cr>
 
 nnoremap j gj 
 nnoremap k gk
@@ -195,6 +200,9 @@ autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+let g:deoplete#enable_at_startup = 1
 
 
 " Tips & Tricks. 
