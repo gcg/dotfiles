@@ -189,6 +189,16 @@ bar {
         }
 }
 
+# moving floating windows
+mode "moveit" {
+    bindsym Up move up 20px
+    bindsym Left move left 20px
+    bindsym Down move down 20px
+    bindsym Right move right 20px
+    bindsym Mod4+m mode "default"
+}
+bindsym Mod4+m focus floating; mode "moveit"
+
 
 #lock me like one of your french girls 
 bindsym $mod+l exec "i3lock -d -i /home/gcg/Pictures/razer_hud_1920x1080.png -n"
@@ -203,7 +213,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # window decorations
-new_window pixel 1
+new_window none
+hide_edge_borders smart
 
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
@@ -211,3 +222,4 @@ exec --no-startup-id polychromatic-tray-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id parcellite
 exec --no-startup-id synclient VertScrollDelta=-113
+exec --no-startup-id compton
