@@ -203,7 +203,7 @@ bindsym Mod4+m focus floating; mode "moveit"
 #lock me like one of your french girls 
 bindsym $mod+l exec "i3lock -d -i /home/gcg/Pictures/razer_hud_1920x1080.png -n"
 # print scren
-bindsym Print exec scrot $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym Print exec "scrot -d 3 $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
