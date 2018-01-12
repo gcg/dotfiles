@@ -11,38 +11,43 @@ general {
         interval = 5
 }
 
+order += "load"
+order += "cpu_usage"
 order += "disk /"
 order += "wireless _first_"
 order += "battery all"
-order += "load"
 order += "tztime local"
 order += "volume master"
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_up = " WiFi: (%quality at %essid) "
+        format_down = " WiFi: down "
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = " %status %percentage %remaining "
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = " %Y-%m-%d %H:%M:%S "
 }
 
 load {
-        format = "%1min"
+        format = " Load: %1min "
 }
 
 disk "/" {
-        format = "%avail"
+        format = " FreeSpace: %avail "
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = " ♪: %volume "
+        format_muted = " ♪: muted (%volume) "
         device = "default"
         mixer = "Master"
         mixer_idx = 0
+}
+
+cpu_usage {
+	format = " CPU: %usage "
 }
