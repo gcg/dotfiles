@@ -48,7 +48,7 @@ font-2 = FontAwesome:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right =  pulseaudio wlan cpu memory battery temperature date powermenu
+modules-right =  pulseaudio wlan eth cpu memory battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -152,7 +152,7 @@ type = internal/pulseaudio
 ;   <bar-volume>
 format-volume = <ramp-volume> <label-volume> 
 format-volume-prefix-foreground = ${colors.foreground-alt}
-format-volume-underline = #009933
+format-volume-underline = #0a6cf5
 
 ; Available tokens:
 ;   %percentage% (default)
@@ -190,15 +190,25 @@ format-connected = <label-connected> <ramp-signal>
 format-connected-underline = #9f78e1
 label-connected =  %essid%
 
-;format-disconnected =
-format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected =  %ifname% disconnected
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected =  %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-2 = 
 ramp-signal-1 = 
 ramp-signal-0 = 
+
+[module/eth]
+type = internal/network
+interface = enx000ec6d98afa
+interval = 3.0 
+format-disconnected = 
+
+format-connected-prefix = " "
+format-connected-underline = #55aa55
+label-connected = %local_ip%
 
 [module/date]
 type = internal/date

@@ -21,7 +21,6 @@ alias zshrc="vim ~/.zshrc && reload"
 alias i3rc="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
-alias android-studio="$HOME/Apps/android-studio/bin/studio.sh"
 
 # Gopath settings
 export GOPATH=$HOME/Work
@@ -42,8 +41,7 @@ alias destroy='vagrant destroy'
 alias dev="ssh dev.gcg.me"
 alias work="cd ~/Work/src/github.com/"
 
-alias andy='./gradlew assembleRelease && ./gradlew publishApkRelease'
-alias andy_device='./gradlew assembleRelease && adb install -r app/build/outputs/apk/app-release.apk'
+alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
 
 DISABLE_AUTO_TITLE=true
 
@@ -87,6 +85,9 @@ export PATH="$PATH:$HOME/.npm/bin"
 
 
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+
+source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 
 source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

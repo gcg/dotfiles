@@ -93,9 +93,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: Browser
-bindsym $mod+2 workspace 2: Terminal
-bindsym $mod+3 workspace 3: Slack
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -188,7 +188,8 @@ bindsym Mod4+m focus floating; mode "moveit"
 #lock me like one of your french girls 
 bindsym $mod+l exec "i3lock -d -i /home/gcg/Pictures/razer_hud_1920x1080.png -n"
 # print scren
-bindsym --release Print exec "scrot -s $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
+bindsym Print exec "scrot $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
+bindsym --release $mod+Shift+F3 exec "scrot -s $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
