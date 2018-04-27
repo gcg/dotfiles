@@ -40,6 +40,7 @@ alias down='vagrant halt'
 alias destroy='vagrant destroy'
 alias dev="ssh dev.gcg.me"
 alias work="cd ~/Work/src/github.com/"
+alias gml="git checkout master && git pull && git remote prune origin"
 
 alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
 
