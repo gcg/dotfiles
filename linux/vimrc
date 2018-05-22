@@ -29,7 +29,8 @@ Plug 'stephpy/vim-php-cs-fixer'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'chr4/nginx.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
