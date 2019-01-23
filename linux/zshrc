@@ -21,11 +21,12 @@ alias zshrc="vim ~/.zshrc && reload"
 alias i3rc="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
+alias aptup="sudo apt update |lolcat && sudo apt upgrade |lolcat && sudo apt autoremove|lolcat"
 
 # Gopath settings
 export GOPATH=$HOME/Work
 export PATH=$PATH:$GOPATH/bin
-
+export GO111MODULE=on
 
 
 ### Added by the Heroku Toolbelt
