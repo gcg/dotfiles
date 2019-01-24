@@ -217,6 +217,6 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id parcellite
 exec --no-startup-id synclient VertScrollDelta=-113
 exec --no-startup-id compton
-exec --no-startup-id rescuetime
 exec --no-startup-id polybar one
 exec --no-startup-id xautolock -time 10 -locker lock
+exec_always alttab
