@@ -12,6 +12,7 @@ ffmpeg -i "$TMPFILE" -i /tmp/palette.png -filter_complex "paletteuse" $OUTPUT.gi
 mv $TMPFILE $OUTPUT.mkv
 
 notify-send "size $(du -h $OUTPUT.gif | awk '{print $1}')"
+rm $OUTPUT.mkv
 
 eog $OUTPUT.gif
 
