@@ -22,6 +22,9 @@ alias i3rc="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 alias aptup="sudo apt update |lolcat && sudo apt upgrade |lolcat && sudo apt autoremove|lolcat"
+alias top="gotop -psbc monokai"
+alias iftop="sudo iftop"
+alias powertop="sudo powertop"
 
 # Gopath settings
 export GOPATH=$HOME/Work

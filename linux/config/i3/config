@@ -190,6 +190,8 @@ bindsym $mod+l exec "lock"
 # print scren
 bindsym Print exec "scrot $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
 bindsym --release $mod+Shift+F3 exec "scrot -s $HOME/Dropbox/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png && notify-send 'SS is ready.'"
+bindsym $mod+Shift+F4 exec "killall ffmpeg"
+bindsym $mod+F4 exec "screencast.sh"
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
