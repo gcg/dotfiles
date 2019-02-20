@@ -22,10 +22,15 @@ alias i3rc="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias tmuxrc="vim ~/.tmux.conf && tmux source-file ~/.tmux.conf"
 alias aptup="sudo apt update |lolcat && sudo apt upgrade |lolcat && sudo apt autoremove|lolcat"
+alias up="sudo apt update |lolcat && sudo apt upgrade |lolcat && sudo apt autoremove|lolcat && composer global update && npm update -g && sudo gem update --system && sudo snap refresh | lolcat"
 alias top="gotop -psbc monokai"
 alias iftop="sudo iftop"
 alias powertop="sudo powertop"
+alias fuck='sudo "$BASH" -c "$(history p !!)"'
+alias work="cd ~/Work/src/github.com/"
+alias gml="git checkout master && git pull && git remote prune origin"
 
+alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
 # Gopath settings
 export GOPATH=$HOME/Work
 export PATH=$PATH:$GOPATH/bin
@@ -38,15 +43,6 @@ export GO111MODULE=on
 # tmux scripts to the bin
 export PATH=$PATH:$HOME/.tmux/bin
 
-alias fuck='sudo "$BASH" -c "$(history p !!)"'
-alias up='vagrant up'
-alias down='vagrant halt'
-alias destroy='vagrant destroy'
-alias dev="ssh dev.gcg.me"
-alias work="cd ~/Work/src/github.com/"
-alias gml="git checkout master && git pull && git remote prune origin"
-
-alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
 
 DISABLE_AUTO_TITLE=true
 
