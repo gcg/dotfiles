@@ -29,6 +29,8 @@ alias powertop="sudo powertop"
 alias fuck='sudo "$BASH" -c "$(history p !!)"'
 alias work="cd ~/Work/src/github.com/"
 alias gml="git checkout master && git pull && git remote prune origin"
+alias privatefox="firefox -private"
+alias inchrome="google-chrome --incognito"
 
 alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
 # Gopath settings
