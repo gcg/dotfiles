@@ -155,7 +155,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
 let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
-let g:syntastic_php_phpcs_args = '--standard=PSR2'
+let g:syntastic_php_phpcs_args = '--standard=@PSR12,@PSR1'
 let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
 
 " Tagbar
@@ -184,6 +184,7 @@ let g:ragtag_global_maps = 1
 
 "php-cs-fixer
 let g:php_cs_fixer_path = './vendor/bin/php-cs-fixer'
+let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
 autocmd BufWritePost *.php call PhpCsFixerFixFile()
 
 "vim-jsx (react)
@@ -205,7 +206,8 @@ autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 let g:deoplete#enable_at_startup = 1
 
