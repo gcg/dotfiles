@@ -171,6 +171,7 @@ let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
 let g:ale_php_phpcs_standard = 'phpcs-ruleset.xml'
 let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
 let g:ale_php_phpmd_ruleset = 'phpmd-ruleset.xml'
+let g:ale_set_highlights = 0
 
 
 " Tagbar
