@@ -93,29 +93,45 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+1 workspace 1 Browser
+bindsym $mod+2 workspace 2 Terminal
+bindsym $mod+3 workspace 3 Slack
+bindsym $mod+4 workspace 4 Misc
+bindsym $mod+5 workspace 5 Misc
+bindsym $mod+6 workspace 6 Misc
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace number 1 Browser
+bindsym $mod+Shift+2 move container to workspace number 2 Terminal
+bindsym $mod+Shift+3 move container to workspace number 3 Slack
+bindsym $mod+Shift+4 move container to workspace number 4 Misc
+bindsym $mod+Shift+5 move container to workspace number 5 Misc
+bindsym $mod+Shift+6 move container to workspace number 6 Misc
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
+# app specific rules
+for_window [instance="google-chrome" class="Google-chrome" window_role="browser"] move container to workspace number 1 Browser
+for_window [instance="slack"] move container to workspace number 3 Slack
+for_window [instance="discord"] move container to workspace number 3 Slack
+#gmail
+#for_window [instance="crx_kmhopmchchfpfdcdjodmpfaaphdclmlj"] move container to workspace number 4 Email
+##poltio email
+#for_window [instance="crx_miilmjmgkdhdabfkjkilgecbhbchboem"] move container to workspace number 4 Email
+#
+##toggl
+#for_window [instance="crx_emhlbipdbnglohkhcmimglnngjlfoehc"] move container to workspace number 5 Calendar
+##keep
+#for_window [instance="crx_hcfcmgpnmpinpidjdgejehjchlbglpde"] move container to workspace number 5 Calendar
+##calendar
+#for_window [instance="crx_lfmjnglombnbfkjcjbokbccmggfcnlgn"] move container to workspace number 5 Calendar, move left, move, left, resize grow width 30 px or 30 ppt
+#
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -209,9 +225,7 @@ workspace_auto_back_and_forth yes
 bindsym $mod+z workspace back_and_forth
 bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
 
-
-
-
+# auto start some apps
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id polychromatic-tray-applet 
@@ -222,3 +236,18 @@ exec --no-startup-id compton
 exec --no-startup-id polybar one
 exec --no-startup-id xautolock -time 10 -locker lock
 exec_always alttab
+
+exec --no-startup-id "sh -c 'sleep 5; exec google-chrome'"
+exec --no-startup-id "sh -c 'sleep 5; exec slack'"
+exec --no-startup-id "sh -c 'sleep 5; exec discord'"
+## calendar
+#exec --no-startup-id "sh -c 'sleep 5; exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=lfmjnglombnbfkjcjbokbccmggfcnlgn'"
+## keep
+#exec --no-startup-id "sh -c 'sleep 5; exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=hcfcmgpnmpinpidjdgejehjchlbglpde'"
+## toggl
+#exec --no-startup-id "sh -c 'sleep 5; exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=emhlbipdbnglohkhcmimglnngjlfoehc'"
+#Gmail
+#exec --no-startup-id "sh -c 'sleep 5; exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=kmhopmchchfpfdcdjodmpfaaphdclmlj'"
+#PoltioMail
+#exec --no-startup-id "sh -c 'sleep 5; exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=miilmjmgkdhdabfkjkilgecbhbchboem'"
+
