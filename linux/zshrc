@@ -8,12 +8,13 @@ export ZSH=/home/gcg/.oh-my-zsh
 #ZSH_THEME="spaceship"
 ZSH_THEME="spaceship"
 
-plugins=(git github go golang redis-cli battery bower bundler cake capistrano composer npm rails zsh_reload laravel4 laravel5 git-flow git-flow-completion docker)
+plugins=(git github go golang redis-cli battery bower bundler cake capistrano composer npm zsh_reload laravel4 laravel5 git-flow docker)
 
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
+export PATH=$PATH:/snap/bin
 
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
@@ -88,6 +89,9 @@ export PATH="$PATH:$HOME/.npm/bin"
 
 
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+
+source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 
 source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
