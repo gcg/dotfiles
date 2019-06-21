@@ -32,7 +32,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
 Plug 'w0rp/ale'
-
+Plug 'luochen1990/rainbow'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -226,6 +226,10 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 let g:deoplete#enable_at_startup = 1
+
+
+" Rainbow
+let g:rainbow_active = 1 
 
 
 " Tips & Tricks. 
