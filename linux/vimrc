@@ -170,9 +170,9 @@ let g:ale_linters = {
     \'php': ['langserver', 'phpcs', 'phpmd', 'psalm']
     \}
 let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
-let g:ale_php_phpcs_standard = 'phpcs-ruleset.xml'
+let g:ale_php_phpcs_standard = 'phpcs.xml'
 let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
-let g:ale_php_phpmd_ruleset = 'phpmd-ruleset.xml'
+let g:ale_php_phpmd_ruleset = 'phpmd.xml'
 let g:ale_set_highlights = 0
 let g:ale_echo_msg_format = '%linter%: %s'
 
