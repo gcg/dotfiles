@@ -32,8 +32,10 @@ alias work="cd ~/Work/src/github.com/"
 alias gml="git checkout master && git pull && git remote prune origin"
 alias privatefox="firefox -private"
 alias inchrome="google-chrome --incognito"
+alias macos="cd ~/Downloads/macOS && sh basic.sh"
 
 alias listwifis='nmcli -f in-use,ssid,bssid,signal,bars dev wifi'
+alias latestdocker='docker exec -it `docker ps -q --latest` /bin/sh'
 # Gopath settings
 export GOPATH=$HOME/Work
 export PATH=$PATH:$GOPATH/bin
@@ -101,3 +103,9 @@ source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 
 source "/home/gcg/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# added by travis gem
+[ -f /home/gcg/.travis/travis.sh ] && source /home/gcg/.travis/travis.sh
