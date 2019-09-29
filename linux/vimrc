@@ -35,6 +35,8 @@ Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'stephpy/vim-yaml'
+Plug 'wakatime/vim-wakatime'
+Plug 'milch/vim-fastlane'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -43,7 +45,7 @@ syntax on
 filetype plugin indent on
 set number
 set relativenumber
-set nocompatible 
+set nocompatible
 set t_Co=256
 set mouse=a
 syntax enable
@@ -55,8 +57,8 @@ set tabstop=4
 set smarttab
 set showmode
 set tags=tags
-set softtabstop=4 
-set expandtab  
+set softtabstop=4
+set expandtab
 set shiftwidth=4
 set shiftround
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
@@ -74,7 +76,7 @@ set directory=~/.vim/swap//
 set noswapfile
 set clipboard=unnamedplus
 set wildignore+=*/vendor/**         " I don't want to pull up these folders/files when calling CtrlP
-set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP 
+set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
 set ttymouse=sgr "mouse support for fullscreen
 
@@ -109,7 +111,7 @@ nmap <leader>gst :Gstatus<cr>
 nmap <leader>c :!composer install <cr>
 nmap cn :cn<cr>
 
-nnoremap j gj 
+nnoremap j gj
 nnoremap k gk
 imap jj <esc>
 
@@ -120,7 +122,7 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Familiar commands for file/symbol browsing
-map <D-p> :CtrlP<cr> 
+map <D-p> :CtrlP<cr>
 map <C-r> :CtrlPBufTag<cr>
 
 "Powerline
@@ -137,7 +139,7 @@ highlight Search cterm=underline
 command! H let @/="" " Remove search results
 autocmd BufWritePre *.php :%s/\s\+$//e
 
-" do not continue comments 
+" do not continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "airline
@@ -174,7 +176,11 @@ let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
 let g:ale_php_phpmd_ruleset = 'phpmd.xml'
 let g:ale_set_highlights = 0
 let g:ale_echo_msg_format = '%linter%: %s'
-
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
 
 " Tagbar
 let g:tagbar_type_php  = {
@@ -190,7 +196,7 @@ let g:tagbar_type_php  = {
 
 " Gitgutter
 let g:gitgutter_max_signs = 2000
-let g:ragtag_global_maps = 1 
+let g:ragtag_global_maps = 1
 
 "phpfmt
 "let g:phpfmt_standard = 'PSR2'
@@ -234,15 +240,15 @@ let g:deoplete#enable_at_startup = 1
 
 
 " Rainbow
-let g:rainbow_active = 1 
+let g:rainbow_active = 1
 
 
-" Tips & Tricks. 
+" Tips & Tricks.
 
-" General 
-" Select anything inside two things like '' or () type vi' or vi( You can change the thing inside of two things with ci' or delete it with di' 
+" General
+" Select anything inside two things like '' or () type vi' or vi( You can change the thing inside of two things with ci' or delete it with di'
 " m{key} to bookmark some line and `{key} to move to that bookmark
-" P to paste above, p to paste below. yy to yank line, dd to delete line. 
+" P to paste above, p to paste below. yy to yank line, dd to delete line.
 
 " Moving around
 " N line above : nk
@@ -260,9 +266,9 @@ let g:rainbow_active = 1
 " A: set insert mode at the end of the line
 " zz to center the file
 
-" Ctags 
-" :tag -> searches 
-" :!ctags -R -> regens 
+" Ctags
+" :tag -> searches
+" :!ctags -R -> regens
 " :tn -> next tag
 " :ts -> select tag from list
 " :tp -> prev tag
@@ -272,14 +278,13 @@ let g:rainbow_active = 1
 " g# same as g* but in backward direction.
 " g] and other commands will jump to a tag definition (a tag can be a function or variable name, or more).
 
-" Complete 
+" Complete
 " CTRL X -> completion mode
 " + CTRL o -> complete language methods
-" + CTRL l -> complete line 
+" + CTRL l -> complete line
 " + CTRL f -> complete filename
 " CTRL p -> word complete previous
-" CTRL n -> word complete next 
+" CTRL n -> word complete next
 
-" Search & Replace 
-" :s/{search}/{replace} for single line :s% for whole file. 
-
+" Search & Replace
+" :s/{search}/{replace} for single line :s% for whole file.
