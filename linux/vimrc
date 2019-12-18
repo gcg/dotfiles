@@ -25,7 +25,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json'
 Plug 'stephpy/vim-php-cs-fixer'
-"Plug 'ycm-core/YouCompleteMe'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
@@ -236,7 +235,7 @@ if !exists("g:UltiSnipsJumpForwardTrigger")
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
 endif
 
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
 
 
 " Rainbow
