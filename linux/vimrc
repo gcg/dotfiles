@@ -1,16 +1,18 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'StanAngeloff/php.vim'
 Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
@@ -18,39 +20,39 @@ Plug 'tpope/vim-fugitive'
 Plug 'jwalton512/vim-blade'
 Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json'
 Plug 'stephpy/vim-php-cs-fixer'
+" this reuires py support in vim. pls install it first with: `pip3 install --user pynvim`
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'stephpy/vim-yaml'
 Plug 'wakatime/vim-wakatime'
 Plug 'milch/vim-fastlane'
 
-" Add plugins to &runtimepath
+
 call plug#end()
 
 syntax on
+syntax enable
+colorscheme monokai
 filetype plugin indent on
+
+set guifont=monaco\ for\ powerline:h16
 set number
 set relativenumber
 set nocompatible
 set t_Co=256
 set mouse=a
-syntax enable
-colorscheme monokai
-
-set guifont=Monaco\ for\ Powerline:h16
 set linespace=12
 set tabstop=4
 set smarttab
@@ -70,27 +72,19 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 set autowrite  "Save on buffer switch
 set showcmd
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
 set noswapfile
 set clipboard=unnamedplus
 set wildignore+=*/vendor/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
 set ttymouse=sgr "mouse support for fullscreen
+set redrawtime=200000
 
 let mapleader = ","
 let g:mapleader = ","
 let g:EasyMotion_leader_key = '<Leader>'
-
-
-" Vim-Markdown
-let g:vim_markdown_folding_disabled = 1 "markdown folding
-
-" NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeShowHidden=1
-
 
 " Mappings
 nmap :sp :rightbelow sp<cr>
@@ -114,21 +108,13 @@ nnoremap j gj
 nnoremap k gk
 imap jj <esc>
 
-" tagbar
-nmap <F8> :TagbarToggle<CR>
 
-"Auto change directory to match current file ,cd
+" Auto change directory to match current file ,cd
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Familiar commands for file/symbol browsing
 map <D-p> :CtrlP<cr>
 map <C-r> :CtrlPBufTag<cr>
-
-"Powerline
-let g:Powerline_symbols = 'fancy'
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Search
 autocmd cursorhold * set nohlsearch
@@ -141,11 +127,39 @@ autocmd BufWritePre *.php :%s/\s\+$//e
 " do not continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled=1
+" Plugins
 
-"syntastic
+" CTRLP
+map <D-p> :CtrlP<cr>
+map <C-r> :CtrlPBufTag<cr>
+
+" NERDTree
+let NERDTreeShowHidden=1
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_php  = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+            \ ]
+            \ }
+
+"airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#branch#enabled=1
+let g:airline_powerline_fonts=1
+let g:airline_theme='minimalist'
+
+" Gitgutter
+let g:gitgutter_max_signs = 2000
+let g:ragtag_global_maps = 1
+
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -163,8 +177,40 @@ let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 "let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
 "let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
 
+" vim-jsx (react)
+let g:jsx_ext_required = 0
 
-"ale
+" Vim-go
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+" Vim-Blade
+autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
+
+" Vim-Markdown
+let g:vim_markdown_folding_disabled = 1 "markdown folding
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+if !exists("g:UltiSnipsJumpForwardTrigger")
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+"php-cs-fixer
+let g:php_cs_fixer_php_path = 'php'
+let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
+autocmd BufWritePost *.php call PhpCsFixerFixFile()
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Ale
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \'javascript': ['eslint'],
@@ -177,69 +223,10 @@ let g:ale_set_highlights = 0
 let g:ale_echo_msg_format = '%linter%: %s'
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\}
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'javascript': ['eslint'],
+    \}
 
-" Tagbar
-let g:tagbar_type_php  = {
-            \ 'ctagstype' : 'php',
-            \ 'kinds'     : [
-            \ 'i:interfaces',
-            \ 'c:classes',
-            \ 'd:constant definitions',
-            \ 'f:functions',
-            \ 'j:javascript functions:1'
-            \ ]
-            \ }
-
-" Gitgutter
-let g:gitgutter_max_signs = 2000
-let g:ragtag_global_maps = 1
-
-"phpfmt
-"let g:phpfmt_standard = 'PSR2'
-"let g:phpfmt_on_save = get(g:, 'phpfmt_on_save', 1)
-"let g:phpfmt_command = './vendor/bin/phpcbf'
-"let g:phpfmt_php_path = 'php'
-"let g:phpfmt_enable_default_mapping = 1
-"let g:phpfmt_tmp_dir = '~/.vim/swap'
-
-"php-cs-fixer
-let g:php_cs_fixer_path = './vendor/bin/php-cs-fixer'
-let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
-autocmd BufWritePost *.php call PhpCsFixerFixFile()
-
-"vim-jsx (react)
-let g:jsx_ext_required = 0
-
-"YCM
-let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_path_to_python_interpreter = "/usr/local/bin/python"
-
-"Vim-go
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-if !exists("g:UltiSnipsJumpForwardTrigger")
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-endif
-
-let g:deoplete#enable_at_startup = 1
-
-
-" Rainbow
-let g:rainbow_active = 1
 
 
 " Tips & Tricks.
