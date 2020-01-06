@@ -47,7 +47,6 @@ syntax enable
 colorscheme monokai
 filetype plugin indent on
 
-set guifont=monaco\ for\ powerline:h16
 set number
 set relativenumber
 set nocompatible
@@ -81,6 +80,7 @@ set wildignore+=*/public/**         " I don't want to pull up these folders/file
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
 set ttymouse=sgr "mouse support for fullscreen
 set redrawtime=200000
+set updatetime=2000
 
 let mapleader = ","
 let g:mapleader = ","
@@ -208,7 +208,9 @@ let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules
 autocmd BufWritePost *.php call PhpCsFixerFixFile()
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup=1
+call deoplete#custom#option('auto_complete', v:false)
+
 
 " Ale
 let g:ale_linters_explicit = 1

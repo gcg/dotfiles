@@ -53,7 +53,7 @@ export EVENT_NOKQUEUE=1
 export GPG_TTY=$(tty)
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export NVM_DIR="/home/gcg/.nvm"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/games"
 export PATH=$PATH:/snap/bin
 export PATH=$PATH:$GOPATH/bin
 
