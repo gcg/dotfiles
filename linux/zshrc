@@ -1,3 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export TERM="xterm-256color"
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/gcg/.oh-my-zsh
 
@@ -8,73 +17,7 @@ export ZSH=/home/gcg/.oh-my-zsh
 #ZSH_THEME="spaceship"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="amuse"
-
-# powerlevel9k custom methods
-custom_php_version(){
-    local count_php_files
-    count_php_files=`ls -1 *.php 2>/dev/null | wc -l`
-    local php_version
-    php_version=$(php -r 'echo PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION . "." . PHP_RELEASE_VERSION;')
-    if [[ -n "$php_version" ]] && [[ $count_php_files != 0 ]]; then
-        echo -n " $php_version"
-    fi
-}
-custom_node_version(){
-    local node_version=$(node -v 2>/dev/null)
-    [[ -z "${node_version}" ]] && return
-    if [[ -f "package.json" ]]; then
-        echo -n " ${node_version:1}"
-    fi
-}
-custom_go_version(){
-    local go_version
-    local go_path
-    local count_go_files
-    go_version=$(go version 2>/dev/null | sed -E "s/.*(go[0-9.]*).*/\1/")
-    go_path=$(go env GOPATH 2>/dev/null)
-    count_go_files=`ls -1 *.go 2>/dev/null | wc -l`
-    if [[ -n "$go_version" && "${PWD##$go_path}" != "$PWD" ]] && [[ $count_go_files != 0 ]]; then
-        echo -n " $go_version"
-    fi
-}
-custom_laravel_version(){
-    local laravel_version="$(php artisan --version 2> /dev/null)"
-    if [[ -n "${laravel_version}" && "${laravel_version}" =~ "Laravel Framework" ]]; then
-        # Strip out everything but the version
-        laravel_version="${laravel_version//Laravel Framework /}"
-        echo -n " ${laravel_version}"
-    fi
-}
-
-# Current active font: SauceCode Pro from Nerd Fonts
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=20
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_absolute"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon user dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_php custom_laravel custom_node custom_go)
-POWERLEVEL9K_DISABLE_PROMPT=true
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=' '
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_CUSTOM_PHP="custom_php_version"
-POWERLEVEL9K_CUSTOM_LARAVEL="custom_laravel_version"
-POWERLEVEL9K_CUSTOM_NODE="custom_node_version"
-POWERLEVEL9K_CUSTOM_GO="custom_go_version"
-POWERLEVEL9K_CUSTOM_PHP_BACKGROUND='104'
-POWERLEVEL9K_CUSTOM_PHP_FOREGROUND='white'
-POWERLEVEL9K_CUSTOM_NODE_BACKGROUND='118'
-POWERLEVEL9K_CUSTOM_NODE_FOREGROUND='black'
-POWERLEVEL9K_CUSTOM_GO_FOREGROUND='white'
-POWERLEVEL9K_CUSTOM_GO_BACKGROUND='014'
-POWERLEVEL9K_CUSTOM_LARAVEL_BACKGROUND='maroon'
-POWERLEVEL9K_CUSTOM_LARAVEL_FOREGROUND='white'
-POWERLEVEL9K_VCS__BACKGROUND='white'
-POWERLEVEL9K_VCS_SHORTEN_LENGTH=30
-POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=30
-POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_VCS_SHORTEN_DELIMITER=".."
-ZSH_THEME="powerlevel9k/powerlevel9k"
-
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 plugins=(git github go golang redis-cli bower bundler cake capistrano composer npm zsh_reload laravel4 laravel5 git-flow docker)
@@ -143,3 +86,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 eval "$(rbenv init -)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
