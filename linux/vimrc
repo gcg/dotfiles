@@ -25,11 +25,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'SirVer/ultisnips'
 Plug 'elzr/vim-json'
 Plug 'stephpy/vim-php-cs-fixer'
-" this reuires py support in vim. pls install it first with: `pip3 install --user pynvim`
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
 Plug 'dense-analysis/ale'
@@ -38,7 +33,13 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'stephpy/vim-yaml'
 Plug 'wakatime/vim-wakatime'
 Plug 'milch/vim-fastlane'
-
+Plug 'soramugi/auto-ctags.vim'
+Plug 'ajh17/VimCompletesMe'
+Plug 'leafgarland/typescript-vim'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
 
@@ -207,11 +208,6 @@ let g:php_cs_fixer_php_path = 'php'
 let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
 autocmd BufWritePost *.php call PhpCsFixerFixFile()
 
-" Deoplete
-let g:deoplete#enable_at_startup=1
-call deoplete#custom#option('auto_complete', v:false)
-
-
 " Ale
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -229,6 +225,12 @@ let g:ale_fixers = {
     \   'javascript': ['eslint'],
     \}
 
+" Auto Ctags
+let g:auto_ctags = 1
+let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=yes', '--languages=php,go,javascript,python']
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 
 " Tips & Tricks.
