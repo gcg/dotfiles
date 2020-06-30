@@ -7,8 +7,6 @@ Plug 'scrooloose/syntastic'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'StanAngeloff/php.vim'
 Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
@@ -40,6 +38,7 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -137,6 +136,37 @@ map <C-r> :CtrlPBufTag<cr>
 " NERDTree
 let NERDTreeShowHidden=1
 
+" Lightline
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+	  \   'readonly': 'LightlineReadonly',
+	  \   'modified': 'LightlineModified',
+      \   'gitbranch': 'LightlineFugitive'
+      \ },
+	  \ 'separator': { 'left': '', 'right': '' },
+	  \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+function! LightlineModified()
+	return &modifiable && &modified ? '+' : ''
+endfunction
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_php  = {
@@ -150,11 +180,6 @@ let g:tagbar_type_php  = {
             \ ]
             \ }
 
-"airline
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#branch#enabled=1
-let g:airline_powerline_fonts=1
-let g:airline_theme='minimalist'
 
 " Gitgutter
 let g:gitgutter_max_signs = 2000
@@ -231,6 +256,12 @@ let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=y
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" TypeScript
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup END
 
 
 " Tips & Tricks.
