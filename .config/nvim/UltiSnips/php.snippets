@@ -1,0 +1,15 @@
+snippet st "strict_types"
+declare(strict_types = 1);
+endsnippet
+
+snippet use_f "Laravel import class"
+use Illuminate\Support\Facades\\$0;
+endsnippet
+
+snippet belongsto "Laravel Eloquent BelongsTo Relationship"
+public function ${1:method}(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+{
+	return $this->belongsTo(${2:Class}::class);
+}
+$0
+endsnippet

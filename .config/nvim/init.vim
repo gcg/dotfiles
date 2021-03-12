@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
@@ -6,11 +6,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'StanAngeloff/php.vim'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
-Plug 'tpope/vim-obsession'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
@@ -26,65 +25,52 @@ Plug 'stephpy/vim-php-cs-fixer'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
 Plug 'dense-analysis/ale'
-Plug 'luochen1990/rainbow'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'stephpy/vim-yaml'
-Plug 'wakatime/vim-wakatime'
-Plug 'milch/vim-fastlane'
-Plug 'soramugi/auto-ctags.vim'
-Plug 'ajh17/VimCompletesMe'
 Plug 'leafgarland/typescript-vim'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'itchyny/lightline.vim'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+Plug 'ncm2/ncm2'
+Plug 'phpactor/ncm2-phpactor'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-tern'
+Plug 'mhartington/nvim-typescript'
+Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-go'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'roxma/nvim-yarp'
 
 call plug#end()
 
+" base config
+let g:python3_host_prog = '/usr/bin/python3'
 syntax on
 syntax enable
 colorscheme monokai
-filetype plugin indent on
-
+set mouse=a
 set number
 set relativenumber
-set nocompatible
-set t_Co=256
-set mouse=a
-set linespace=12
+set autoindent
+set copyindent
+set clipboard=unnamedplus
 set tabstop=4
-set smarttab
-set showmode
-set tags=tags
 set softtabstop=4
 set expandtab
 set shiftwidth=4
 set shiftround
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-set autoindent                  " always set autoindenting on
-set copyindent                  " copy the previous indentation on autoindenting
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
-set timeout timeoutlen=200 ttimeoutlen=100
-set visualbell           " don't beep
-set noerrorbells         " don't beep
-set autowrite  "Save on buffer switch
-set showcmd
-set backupdir=~/.vim/backup/
-set directory=~/.vim/swap/
-set noswapfile
-set clipboard=unnamedplus
 set wildignore+=*/vendor/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
-set ttymouse=sgr "mouse support for fullscreen
-set redrawtime=200000
-set updatetime=2000
 
 let mapleader = ","
 let g:mapleader = ","
 let g:EasyMotion_leader_key = '<Leader>'
+
 
 " Mappings
 nmap :sp :rightbelow sp<cr>
@@ -92,7 +78,6 @@ nmap vs :vsplit<cr>
 nmap sp :split<cr>
 nmap :bp :BufSurfBack<cr>
 nmap :bn :BufSurfForward<cr>
-nmap <C-b> :NERDTreeToggle<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>qa :qa<cr>
@@ -127,14 +112,45 @@ autocmd BufWritePre *.php :%s/\s\+$//e
 " do not continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Plugins
-
 " CTRLP
 map <D-p> :CtrlP<cr>
 map <C-r> :CtrlPBufTag<cr>
 
 " NERDTree
 let NERDTreeShowHidden=1
+nmap <C-b> :NERDTreeToggle<cr>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers=['']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
+let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
+let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
+let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
+let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_php  = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+            \ ]
+            \ }
+
 
 " Lightline
 set noshowmode
@@ -167,41 +183,10 @@ function! LightlineFugitive()
     return ''
 endfunction
 
-" Tagbar
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_php  = {
-            \ 'ctagstype' : 'php',
-            \ 'kinds'     : [
-            \ 'i:interfaces',
-            \ 'c:classes',
-            \ 'd:constant definitions',
-            \ 'f:functions',
-            \ 'j:javascript functions:1'
-            \ ]
-            \ }
-
-
 " Gitgutter
 let g:gitgutter_max_signs = 2000
 let g:ragtag_global_maps = 1
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-"let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_checkers=['']
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
-"let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
-"let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
-"let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
-"let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
 
 " vim-jsx (react)
 let g:jsx_ext_required = 0
@@ -250,12 +235,11 @@ let g:ale_fixers = {
     \   'javascript': ['eslint'],
     \}
 
-" Auto Ctags
-let g:auto_ctags = 1
-let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recursive=yes', '--sort=yes', '--languages=php,go,javascript,python']
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+
+" Hexokinase
+let g:Hexokinase_highlighters = [ 'sign_column' ]
+set termguicolors
 
 " TypeScript
 augroup SyntaxSettings
@@ -264,48 +248,6 @@ augroup SyntaxSettings
 augroup END
 
 
-" Tips & Tricks.
-
-" General
-" Select anything inside two things like '' or () type vi' or vi( You can change the thing inside of two things with ci' or delete it with di'
-" m{key} to bookmark some line and `{key} to move to that bookmark
-" P to paste above, p to paste below. yy to yank line, dd to delete line.
-
-" Moving around
-" N line above : nk
-" N line below : nj
-" Go to Nth line: NG
-" CTRL E : scroll window
-" CTRL Y: scroll up
-" H: move cursor to top
-" M: move cursor to the Middle
-" L: move cursor to the bottom of the window
-" w:move one word
-" b: move one word backwords
-" e: move one word at the end of the word
-" I : set insert mode at the beginning of the line
-" A: set insert mode at the end of the line
-" zz to center the file
-
-" Ctags
-" :tag -> searches
-" :!ctags -R -> regens
-" :tn -> next tag
-" :ts -> select tag from list
-" :tp -> prev tag
-" gd will take you to the local declaration.
-" gD will take you to the global declaration.
-" g* search for the word under the cursor (like *, but g* on 'rain' will find words like 'rainbow').
-" g# same as g* but in backward direction.
-" g] and other commands will jump to a tag definition (a tag can be a function or variable name, or more).
-
-" Complete
-" CTRL X -> completion mode
-" + CTRL o -> complete language methods
-" + CTRL l -> complete line
-" + CTRL f -> complete filename
-" CTRL p -> word complete previous
-" CTRL n -> word complete next
-
-" Search & Replace
-" :s/{search}/{replace} for single line :s% for whole file.
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
