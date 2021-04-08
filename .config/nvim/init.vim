@@ -10,6 +10,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
 Plug 'roxma/nvim-yarp'
+Plug 'wakatime/vim-wakatime'
 
 
 " CTRLP
