@@ -1,46 +1,195 @@
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'StanAngeloff/php.vim'
-Plug 'preservim/tagbar'
-Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go'
-Plug 'rhysd/vim-go-impl'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-Plug 'jwalton512/vim-blade'
-Plug 'honza/vim-snippets'
 Plug 'mileszs/ack.vim'
-Plug 'plasticboy/vim-markdown'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'SirVer/ultisnips'
-Plug 'elzr/vim-json'
-Plug 'stephpy/vim-php-cs-fixer'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'chr4/nginx.vim'
-Plug 'dense-analysis/ale'
-Plug 'leafgarland/typescript-vim'
-Plug 'itchyny/lightline.vim'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
-Plug 'ncm2/ncm2'
-Plug 'phpactor/ncm2-phpactor'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-github'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-tern'
-Plug 'mhartington/nvim-typescript'
-Plug 'ncm2/ncm2-racer'
-Plug 'ncm2/ncm2-go'
-Plug 'ncm2/ncm2-ultisnips'
 Plug 'roxma/nvim-yarp'
+
+
+" CTRLP
+Plug 'ctrlpvim/ctrlp.vim'
+map <D-p> :CtrlP<cr>
+map <C-r> :CtrlPBufTag<cr>
+
+" NERDTree
+Plug 'scrooloose/nerdtree'
+let NERDTreeShowHidden=1
+nmap <C-b> :NERDTreeToggle<cr>
+
+
+" Syntastic
+Plug 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers=['']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
+let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
+let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
+let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
+let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
+
+
+
+" Tagbar
+Plug 'preservim/tagbar'
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_php  = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+            \ ]
+            \ }
+
+" Gitgutter
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_max_signs = 2000
+let g:ragtag_global_maps = 1
+
+
+" JavaScript
+Plug 'pangloss/vim-javascript'
+Plug 'kevinoid/vim-jsonc'
+Plug 'elzr/vim-json'
+" vim-jsx (react)
+Plug 'maxmellon/vim-jsx-pretty'
+let g:jsx_ext_required = 0
+" TypeScript
+Plug 'leafgarland/typescript-vim'
+Plug 'mhartington/nvim-typescript'
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup END
+
+" Vim-go
+Plug 'fatih/vim-go'
+Plug 'rhysd/vim-go-impl'
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+set omnifunc=go#complete#Complete
+
+
+" UltiSnips
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+if !exists("g:UltiSnipsJumpForwardTrigger")
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+
+" PHP
+Plug 'StanAngeloff/php.vim'
+Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+Plug 'jwalton512/vim-blade'
+autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
+
+" Vim-Markdown
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1 "markdown folding
+
+" Lightline
+Plug 'itchyny/lightline.vim'
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+	  \   'readonly': 'LightlineReadonly',
+	  \   'modified': 'LightlineModified',
+      \   'gitbranch': 'LightlineFugitive'
+      \ },
+	  \ 'separator': { 'left': '', 'right': '' },
+	  \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+function! LightlineModified()
+	return &modifiable && &modified ? '+' : ''
+endfunction
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
+
+" Hexokinase
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+let g:Hexokinase_highlighters = [ 'sign_column' ]
+let g:Hexokinase_ftEnabled = ['css', 'html', 'scss']
+set termguicolors
+
+" Rainbow
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
+
+" CoC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" :CocInstall coc-blade-formatter coc-json coc-tailwindcss coc-css coc-discord coc-go coc-html coc-phpactor coc-yaml coc-swagger coc-svg coc-sh coc-psalm coc-phpls coc-phpactor
+
+" Ale
+Plug 'dense-analysis/ale'
+let g:ale_linters_explicit = 1
+let g:ale_set_balloons = 1
+let g:ale_sign_column_always = 1
+let g:ale_linters = {
+    \'javascript': ['eslint'],
+    \'php': ['langserver', 'phpcs', 'phpmd', 'psalm'],
+    \ 'html': ['eslint'],
+    \ 'css': ['eslint'],
+    \ 'json': ['eslint'],
+    \ 'typescript': ['eslint'],
+    \}
+let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
+let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
+let g:ale_php_phpmd_ruleset = 'phpmd.xml'
+let g:ale_set_highlights = 0
+let g:ale_echo_msg_format = '%linter%: %s'
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint', 'prettier'],
+    \   'typescript': ['remove_trailing_lines', 'trim_whitespace', 'eslint', 'prettier'],
+    \ 'json': ['prettier', 'eslint'],
+    \ 'css': ['prettier'],
+      \   'HTML': ['HTMLHint', 'proselint'],
+      \   'go': ['gofmt', 'goimports'],
+      \   'php': ['php_cs_fixer'],
+    \}
+
+
 
 call plug#end()
 
@@ -60,6 +209,7 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 set shiftround
+set tags=tags
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
@@ -111,143 +261,3 @@ autocmd BufWritePre *.php :%s/\s\+$//e
 
 " do not continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" CTRLP
-map <D-p> :CtrlP<cr>
-map <C-r> :CtrlPBufTag<cr>
-
-" NERDTree
-let NERDTreeShowHidden=1
-nmap <C-b> :NERDTreeToggle<cr>
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_checkers=['']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
-let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
-let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
-let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
-let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
-
-" Tagbar
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_php  = {
-            \ 'ctagstype' : 'php',
-            \ 'kinds'     : [
-            \ 'i:interfaces',
-            \ 'c:classes',
-            \ 'd:constant definitions',
-            \ 'f:functions',
-            \ 'j:javascript functions:1'
-            \ ]
-            \ }
-
-
-" Lightline
-set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-	  \   'readonly': 'LightlineReadonly',
-	  \   'modified': 'LightlineModified',
-      \   'gitbranch': 'LightlineFugitive'
-      \ },
-	  \ 'separator': { 'left': '', 'right': '' },
-	  \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-function! LightlineReadonly()
-    return &readonly ? '' : ''
-endfunction
-function! LightlineModified()
-	return &modifiable && &modified ? '+' : ''
-endfunction
-function! LightlineFugitive()
-    if exists('*FugitiveHead')
-        let branch = FugitiveHead()
-        return branch !=# '' ? ' '.branch : ''
-    endif
-    return ''
-endfunction
-
-" Gitgutter
-let g:gitgutter_max_signs = 2000
-let g:ragtag_global_maps = 1
-
-
-" vim-jsx (react)
-let g:jsx_ext_required = 0
-
-" Vim-go
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-" Vim-Blade
-autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
-
-" Vim-Markdown
-let g:vim_markdown_folding_disabled = 1 "markdown folding
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-if !exists("g:UltiSnipsJumpForwardTrigger")
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-endif
-
-"php-cs-fixer
-let g:php_cs_fixer_php_path = 'php'
-let g:php_cs_fixer_rules = "@PSR2,no_unused_imports"          " options: --rules (default:@PSR2)
-autocmd BufWritePost *.php call PhpCsFixerFixFile()
-
-" Ale
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-    \'javascript': ['eslint'],
-    \'php': ['langserver', 'phpcs', 'phpmd', 'psalm']
-    \}
-let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
-let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
-let g:ale_php_phpmd_ruleset = 'phpmd.xml'
-let g:ale_set_highlights = 0
-let g:ale_echo_msg_format = '%linter%: %s'
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'javascript': ['eslint'],
-    \}
-
-
-
-" Hexokinase
-let g:Hexokinase_highlighters = [ 'sign_column' ]
-set termguicolors
-
-" TypeScript
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
-augroup END
-
-
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
