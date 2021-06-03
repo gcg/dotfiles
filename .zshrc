@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws brew colorize command-not-found composer docker docker-compose gcloud golang helm heroku history microk8s mosh npm osx react-native redis-cli)
+plugins=(git aws brew colorize command-not-found composer docker docker-compose gcloud golang helm heroku history microk8s mosh npm osx react-native redis-cli laravel5)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,6 +129,8 @@ alias cloudsql="$HOME/Documents/PoltioSecrets/cloud_sql_proxy -instances=poltio-
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
 alias backup="tar -p -cvf backup.tar .ssh .aws .vimrc .tmux.conf .wakatime.cfg .zshrc .vim/colors .gnupg .gitconfig .bash_history .vim/UltiSnips .weechat .config/mc .vim/backup .vim/swap .config/nvim"
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
+alias sail="./vendor/bin/sail"
+alias b="arch -arm64 brew"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
@@ -155,3 +157,10 @@ export PATH=$PATH:$HOME/.tmux/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/gcg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/gcg/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/gcg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/google-cloud-sdk/completion.zsh.inc'; fi
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
