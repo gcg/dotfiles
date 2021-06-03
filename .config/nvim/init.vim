@@ -12,6 +12,7 @@ Plug 'chr4/nginx.vim'
 Plug 'roxma/nvim-yarp'
 Plug 'wakatime/vim-wakatime'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-surround'
 
 
 " CTRLP
@@ -41,8 +42,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
 let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
-let g:syntastic_php_phpcs_args = '--standard=phpcs-ruleset.xml'
-let g:syntastic_php_phpmd_post_args = 'phpmd-ruleset.xml'
 
 
 
@@ -74,12 +73,8 @@ Plug 'elzr/vim-json'
 Plug 'maxmellon/vim-jsx-pretty'
 let g:jsx_ext_required = 0
 " TypeScript
-Plug 'leafgarland/typescript-vim'
-Plug 'mhartington/nvim-typescript'
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
-augroup END
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Vim-go
 Plug 'fatih/vim-go'
@@ -176,7 +171,7 @@ let g:ale_linters = {
     \}
 let g:ale_php_phpcs_executable = "./vendor/bin/phpcs"
 let g:ale_php_phpmd_executable = './vendor/bin/phpmd'
-let g:ale_php_phpmd_ruleset = 'phpmd.xml'
+let g:ale_php_phpmd_ruleset = './phpmd.xml'
 let g:ale_set_highlights = 0
 let g:ale_echo_msg_format = '%linter%: %s'
 let g:ale_fix_on_save = 1
@@ -188,7 +183,7 @@ let g:ale_fixers = {
     \ 'css': ['prettier'],
       \   'HTML': ['HTMLHint', 'proselint'],
       \   'go': ['gofmt', 'goimports'],
-      \   'php': ['php_cs_fixer'],
+      \   'php': ['phpcbf'],
     \}
 
 
