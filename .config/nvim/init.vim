@@ -74,7 +74,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 let g:jsx_ext_required = 0
 " TypeScript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Vim-go
 Plug 'fatih/vim-go'
@@ -183,10 +182,10 @@ let g:ale_fixers = {
     \ 'css': ['prettier'],
       \   'HTML': ['HTMLHint', 'proselint'],
       \   'go': ['gofmt', 'goimports'],
-      \   'php': ['phpcbf'],
+     \   'php': ['phpcbf'],
     \}
-
-
+command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+nmap <F9> :ALEToggleFixer<CR>
 
 call plug#end()
 
