@@ -129,8 +129,10 @@ alias cloudsql="$HOME/Documents/PoltioSecrets/cloud_sql_proxy -instances=poltio-
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
 alias backup="tar -p -cvf backup.tar .ssh .aws .vimrc .tmux.conf .wakatime.cfg .zshrc .vim/colors .gnupg .gitconfig .bash_history .vim/UltiSnips .weechat .config/mc .vim/backup .vim/swap .config/nvim"
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
-alias sail="./vendor/bin/sail"
 alias b="arch -arm64 brew"
+alias k="kubectl"
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias artisan='php artisan'
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
