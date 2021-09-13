@@ -36,12 +36,12 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 let g:syntastic_php_phpcs_exec = './vendor/bin/phpcs'
-let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
+"let g:syntastic_php_phpmd_exec = './vendor/bin/phpmd'
 
 
 
@@ -162,7 +162,7 @@ let g:ale_set_balloons = 1
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
     \'javascript': ['eslint'],
-    \'php': ['langserver', 'phpcs', 'phpmd', 'psalm'],
+    \'php': ['langserver', 'phpcs', 'psalm'],
     \ 'html': ['eslint'],
     \ 'css': ['eslint'],
     \ 'json': ['eslint'],
@@ -186,6 +186,12 @@ let g:ale_fixers = {
     \}
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 nmap <F9> :ALEToggleFixer<CR>
+
+
+" vimsence
+Plug 'vimsence/vimsence'
+
+
 
 call plug#end()
 
