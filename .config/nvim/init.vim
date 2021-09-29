@@ -1,3 +1,37 @@
+let mapleader = ","
+let g:mapleader = ","
+let g:EasyMotion_leader_key = '<Leader>'
+
+
+" Mappings
+nmap :sp :rightbelow sp<cr>
+nmap vs :vsplit<cr>
+nmap sp :split<cr>
+nmap :bp :BufSurfBack<cr>
+nmap :bn :BufSurfForward<cr>
+nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
+nmap <leader>qa :qa<cr>
+nmap <leader>q! :q!<cr>
+nmap <leader>gca :Gcommit -a -S<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gl :Gpull<cr>
+nmap <leader>gst :Gstatus<cr>
+nmap <leader>c :!composer install <cr>
+nmap cn :cn<cr>
+
+nnoremap j gj
+nnoremap k gk
+imap jj <esc>
+
+
+" Auto change directory to match current file ,cd
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" Familiar commands for file/symbol browsing
+map <D-p> :CtrlP<cr>
+map <C-r> :CtrlPBufTag<cr>
+
 call plug#begin(stdpath('data') . '/plugged')
 
 
@@ -13,6 +47,24 @@ Plug 'roxma/nvim-yarp'
 Plug 'wakatime/vim-wakatime'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-surround'
+Plug 'ap/vim-css-color'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 
 
 " CTRLP
@@ -24,6 +76,7 @@ map <C-r> :CtrlPBufTag<cr>
 Plug 'scrooloose/nerdtree'
 let NERDTreeShowHidden=1
 nmap <C-b> :NERDTreeToggle<cr>
+Plug 'ryanoasis/vim-devicons'
 
 
 " Syntastic
@@ -219,39 +272,6 @@ set wildignore+=*/vendor/**         " I don't want to pull up these folders/file
 set wildignore+=*/public/**         " I don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/node_modules/**   " I don't want to pull up these folders/files when calling CtrlP
 
-let mapleader = ","
-let g:mapleader = ","
-let g:EasyMotion_leader_key = '<Leader>'
-
-
-" Mappings
-nmap :sp :rightbelow sp<cr>
-nmap vs :vsplit<cr>
-nmap sp :split<cr>
-nmap :bp :BufSurfBack<cr>
-nmap :bn :BufSurfForward<cr>
-nmap <leader>w :w!<cr>
-nmap <leader>q :q<cr>
-nmap <leader>qa :qa<cr>
-nmap <leader>q! :q!<cr>
-nmap <leader>gca :Gcommit -a -S<cr>
-nmap <leader>gp :Gpush<cr>
-nmap <leader>gl :Gpull<cr>
-nmap <leader>gst :Gstatus<cr>
-nmap <leader>c :!composer install <cr>
-nmap cn :cn<cr>
-
-nnoremap j gj
-nnoremap k gk
-imap jj <esc>
-
-
-" Auto change directory to match current file ,cd
-nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-
-" Familiar commands for file/symbol browsing
-map <D-p> :CtrlP<cr>
-map <C-r> :CtrlPBufTag<cr>
 
 " Search
 autocmd cursorhold * set nohlsearch
