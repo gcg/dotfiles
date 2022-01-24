@@ -37,6 +37,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'mileszs/ack.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdcommenter'
@@ -52,6 +53,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+Plug 'rhysd/git-messenger.vim'
 
 
 " Telescope
@@ -153,7 +155,6 @@ endif
 
 " PHP
 Plug 'StanAngeloff/php.vim'
-Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 Plug 'jwalton512/vim-blade'
 autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade " Fix blade auto-indent"
 
@@ -243,7 +244,7 @@ nmap <F9> :ALEToggleFixer<CR>
 
 " vimsence
 Plug 'vimsence/vimsence'
-
+Plug 'Yggdroot/indentLine'
 
 
 call plug#end()
