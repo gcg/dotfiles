@@ -169,12 +169,17 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'cocstatus', 'filename', 'modified', 'diagnostic' ] ],
+        \   'right':[
+        \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+        \     [ 'blame' ]
+        \   ],
       \ },
       \ 'component_function': {
 	  \   'readonly': 'LightlineReadonly',
 	  \   'modified': 'LightlineModified',
-      \   'gitbranch': 'LightlineFugitive'
+      \   'gitbranch': 'LightlineFugitive',
+      \   'blame': 'LightlineGitBlame',
       \ },
 	  \ 'separator': { 'left': '', 'right': '' },
 	  \ 'subseparator': { 'left': '', 'right': '' }
@@ -193,7 +198,11 @@ function! LightlineFugitive()
     endif
     return ''
 endfunction
-
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 
 " Hexokinase
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -207,7 +216,7 @@ let g:rainbow_active = 1
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" :CocInstall coc-blade-formatter coc-json coc-tailwindcss coc-css coc-discord coc-go coc-html coc-phpactor coc-yaml coc-swagger coc-svg coc-sh coc-psalm coc-phpls coc-phpactor
+" :CocInstall coc-blade coc-json coc-tailwindcss coc-css coc-discord coc-go coc-html coc-phpactor coc-yaml coc-swagger coc-svg coc-sh coc-psalm coc-phpls coc-git
 
 " Ale
 Plug 'dense-analysis/ale'
