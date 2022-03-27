@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws brew colorize command-not-found composer docker docker-compose gcloud golang helm heroku history microk8s mosh npm osx react-native redis-cli laravel5)
+plugins=(git aws brew colorize command-not-found composer docker docker-compose gcloud golang helm heroku history microk8s mosh npm macos react-native redis-cli laravel5)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,9 +129,10 @@ alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias cloudsql="$HOME/Documents/PoltioSecrets/cloud_sql_proxy -instances=poltio-164412:europe-west1:rds-to-sql-final=tcp:3306"
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
-alias backup="tar -p -cvf backup.tar .ssh .aws .vimrc .tmux.conf .wakatime.cfg .zshrc .vim/colors .gnupg .gitconfig .bash_history .vim/UltiSnips .weechat .config/mc .vim/backup .vim/swap .config/nvim"
+alias backup="tar -p -cvf backup.tar .ssh .aws .config/nvim .tmux.conf .wakatime.cfg .zshrc .gnupg .gitconfig .bash_history  .weechat .config/mc .config/wtf .config/gh .config/coc"
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
 alias b="arch -arm64 brew"
+alias bu='b update && b upgrade && b upgrade --cask --greedy && b cleanup -s && b autoremove && b doctor'
 alias k="kubectl"
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias artisan='php artisan'
