@@ -55,7 +55,6 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 Plug 'rhysd/git-messenger.vim'
 
-
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -255,6 +254,10 @@ nmap <F9> :ALEToggleFixer<CR>
 Plug 'vimsence/vimsence'
 Plug 'Yggdroot/indentLine'
 
+" todo
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+Plug 'folke/todo-comments.nvim'
 
 call plug#end()
 
@@ -293,3 +296,19 @@ autocmd BufWritePre *.php :%s/\s\+$//e
 
 " do not continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+
+
+
+lua << EOF
+  require("todo-comments").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
