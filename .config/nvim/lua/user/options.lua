@@ -1,0 +1,33 @@
+o = vim.opt
+o.backup = false
+o.clipboard = "unnamedplus"
+o.mouse = "a"
+o.number = true
+o.relativenumber = true
+o.autoindent = true
+o.copyindent = true
+o.hlsearch = true
+o.smartcase = true
+o.smartindent = true 
+o.splitbelow = true
+o.splitright = true
+o.swapfile = false 
+o.writebackup = false 
+o.tabstop = 2
+o.shiftwidth = 2
+o.cmdheight = 1
+o.numberwidth = 4 
+o.conceallevel = 0
+o.cursorline = true
+o.signcolumn = "yes"
+o.backspace = {"indent", "eol", "start"}
+o.fileencoding = "utf-8"
+o.pumheight = 10
+o.timeoutlen = 1000
+o.updatetime = 300
+o.wrap = true
+
+
+vim.cmd [[set iskeyword+=-]]
+vim.cmd "set wildignore+=*/vendor/**"
+vim.cmd "set wildignore+=*/node_modules/**"
