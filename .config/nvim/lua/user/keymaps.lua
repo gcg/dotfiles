@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-
-local keymap = vim.api.nvim_set_keymap 
+local keymap = vim.api.nvim_set_keymap
 
 keymap("", ",", "<Nop>", opts)
 vim.g.mapleader = ","
@@ -18,7 +16,7 @@ vim.g.maplocalleader = ","
 -- Normal -- 
 keymap("n", "<leader>hs", ":split<cr>", opts)
 keymap("n", "<leader>vs", ":vsplit<cr>", opts)
-keymap("n", "<leader>q", ":q<cr>", opts)
+--keymap("n", "<leader>q", ":q<cr>", opts)
 keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<C-b>", ":NvimTreeToggle<cr>", opts)
 

@@ -5,7 +5,7 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = fn.system({
 		"git",
-		"clone",
+		"clone", 
 		"--depth",
 		"1",
 		"https://github.com/wbthomason/packer.nvim",
@@ -42,18 +42,25 @@ packer.init({
 return packer.startup(function(use)
 
 	-- Update packer by packer. 
-	use("wbthomason/packer.nvim") 
+	use("wbthomason/packer.nvim")
 
 	-- useful lua functions for telescope and other plugins 
-	use("nvim-lua/plenary.nvim") 
+	use("nvim-lua/plenary.nvim")
 
-	-- for auto closing quotes and bracket pairs. 
-	use({ 
-		"windwp/nvim-autopairs", 
-		config = function () 
-			require("nvim-autopairs").setup {} 
+	-- speed up lua plugins by caching
+	use ({
+		"lewis6991/impatient.nvim",
+		config = function ()
+			require("impatient").enable_profile()
 		end
 	})
+
+	-- Treesitter for syntax highligt 
+	use("nvim-treesitter/nvim-treesitter")
+	use("p00f/nvim-ts-rainbow")
+
+	-- for auto closing quotes and bracket pairs. 
+	use({"windwp/nvim-autopairs"})
 
 	-- for commenting and uncommenting blocks 
 	use({
@@ -73,10 +80,90 @@ return packer.startup(function(use)
 
 	-- File browser 
 	use("kyazdani42/nvim-tree.lua")
+	-- Comment strings for different languages
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 
 	-- Theme
 	use("tanvirtin/monokai.nvim")
+
+	-- Tabs 
+	use ({
+		'akinsho/bufferline.nvim', 
+		tag = "v2.*", 
+		requires = 'kyazdani42/nvim-web-devicons'
+	})
+
+	-- Statusline
+	use({
+  	"nvim-lualine/lualine.nvim",
+  	requires = { 'kyazdani42/nvim-web-devicons' }
+	})
+
+	-- Obey .editorconfig files if exists
+	use("editorconfig/editorconfig-vim")
+
+	-- Plugin that helps display a popup with the list of shortcuts
+	use("folke/which-key.nvim")
+
+	-- Autocomplete 
+	use({ "hrsh7th/nvim-cmp"}) -- The completion plugin
+	use({ "hrsh7th/cmp-buffer"}) -- buffer completions
+	use({ "hrsh7th/cmp-path"}) -- path completions
+	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-nvim-lua" })
+
+	-- snippets
+	use({ "L3MON4D3/LuaSnip" }) --snippet engine
+	use({ "rafamadriz/friendly-snippets" })
+
+	-- LSP 
+	use("neovim/nvim-lspconfig")
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	
+	-- Telescope 
+	use({'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
+	use({
+		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		requires = { {'nvim-lua/plenary.nvim'} }
+	})
+
+	-- Gitsigns
+	use("lewis6991/gitsigns.nvim")
+
+	-- Wakatime 
+	use("wakatime/vim-wakatime")
+
+	-- Colorize
+	use({
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+        require('colorizer').setup {}
+    end
+	})
+
+	-- Discord Rich Presence 
+	use("vimsence/vimsence")
+
+	-- Trouble 
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup {}
+		end
+	}
+	-- TodoComments 
+	use {
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup {}
+		end
+	}
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

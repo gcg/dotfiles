@@ -26,6 +26,7 @@ o.pumheight = 10
 o.timeoutlen = 1000
 o.updatetime = 300
 o.wrap = true
+o.termguicolors = true
 
 
 vim.cmd [[set iskeyword+=-]]
