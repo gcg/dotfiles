@@ -4,10 +4,10 @@ if not status_ok then
 end
 
 configs.setup({
-	ensure_installed = { 
-		"lua", 
-		"php", 
-		"javascript", 
+	ensure_installed = {
+		"lua",
+		"php",
+		"javascript",
 		"rust",
 		"html",
 		"bash",

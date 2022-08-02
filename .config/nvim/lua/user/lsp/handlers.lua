@@ -1,6 +1,5 @@
 local M = {}
 
--- TODO: backfill this to template
 M.setup = function()
 	local signs = {
 		{ name = "DiagnosticSignError", text = "" },
@@ -15,7 +14,7 @@ M.setup = function()
 
 	local config = {
 		-- disable virtual text
-		virtual_text = true,
+		virtual_text = false,
 		-- show signs
 		signs = {
 			active = signs,
@@ -77,14 +76,13 @@ local function lsp_keymaps(bufnr)
 	)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format{async=true}' ]])
+	--vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]])
 end
 
 M.on_attach = function(client, bufnr)
 	-- vim.notify(client.name .. " starting...")
-	-- TODO: refactor this into a method that checks if string in list
-	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
+	if client.name ~= "null-ls" then
+		client.server_capabilities.document_formatting = false
 	end
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)

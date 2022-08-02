@@ -24,7 +24,6 @@ local servers = {
 	"tailwindcss",
 }
 
-
 for _, server in pairs(servers) do
 	local opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
@@ -44,9 +43,9 @@ mason.setup({
 		icons = {
 			package_installed = "✓",
 			package_pending = "➜",
-			package_uninstalled = "✗"
+			package_uninstalled = "✗",
 		},
-	}
+	},
 })
 
 mason_lsp_config.setup({

@@ -11,14 +11,15 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local completion = null_ls.builtins.completion
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-
 null_ls.setup({
-	debug = false,
+	debug = true,
+	on_attach = function(client)
+		require("lsp-format").on_attach(client)
+	end,
 	sources = {
 		completion.spell,
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.stylua,
+		formatting.prettier,
 		formatting.eslint,
 		formatting.gofmt,
 		formatting.phpcbf.with({
@@ -34,7 +35,7 @@ null_ls.setup({
 					-- phpcbf return a 1 or 2 exit code if it detects warnings or errors
 					return code <= 2
 				end,
-			}
+			},
 		}),
 		diagnostics.php,
 		diagnostics.phpcs.with({
@@ -78,27 +79,12 @@ null_ls.setup({
 							and params.output.files
 							and params.output.files[params.bufname]
 							and params.output.files[params.bufname].messages
-							or {}
+						or {}
 
 					return parser({ output = params.messages })
 				end,
-			}
+			},
 		}),
-		diagnostics.psalm,
 		diagnostics.eslint,
 	},
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-					vim.lsp.buf.formatting_sync()
-				end,
-			})
-		end
-	end,
-
 })
