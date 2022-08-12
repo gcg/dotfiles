@@ -27,6 +27,6 @@ vim.opt.updatetime = 300
 vim.opt.wrap = true
 vim.opt.termguicolors = true
 
-vim.cmd [[set iskeyword+=-]]
-vim.cmd "set wildignore+=*/vendor/**"
-vim.cmd "set wildignore+=*/node_modules/**"
+vim.cmd([[set iskeyword+=-]])
+vim.cmd("set wildignore+=*/vendor/**")
+vim.cmd("set wildignore+=*/node_modules/**")
