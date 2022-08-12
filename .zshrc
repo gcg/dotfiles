@@ -36,7 +36,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -174,8 +174,9 @@ if [ -f '/Users/gcg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/gcg/google-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/gcg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/google-cloud-sdk/completion.zsh.inc'; fi
 
+# Auto complete kubectl pods, services, nodes etc... 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
-
+# To support cmd right, cmd left navigation between words for alacritty 
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
