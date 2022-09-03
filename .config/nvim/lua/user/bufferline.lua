@@ -3,7 +3,7 @@ if not buff_ok then
 	return
 end
 
-bufferline.setup {
+bufferline.setup({
 	options = {
 		max_name_length = 30,
 		max_prefix_length = 30,
@@ -11,7 +11,9 @@ bufferline.setup {
 		diagnostics = false,
 		offsets = { { filetype = "NvimTree", text = "Files", padding = 1 } },
 		separator_style = "thin",
-		indicator_icon = '',
-
-	}
-}
+		indicator = {
+			style = "icon",
+			icon = "",
+		},
+	},
+})

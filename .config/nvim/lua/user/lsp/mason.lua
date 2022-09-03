@@ -22,6 +22,8 @@ local servers = {
 	"pyright",
 	"rust_analyzer",
 	"tailwindcss",
+	"zk",
+	"prismals",
 }
 
 for _, server in pairs(servers) do

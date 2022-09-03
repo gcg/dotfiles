@@ -27,7 +27,9 @@ configs.setup({
 		"sql",
 		"typescript",
 		"yaml",
-		"vue"
+		"vue",
+		"tsx",
+		"prisma",
 	}, -- one of "all" or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	sync_install = true,
@@ -41,11 +43,11 @@ configs.setup({
 	},
 	indent = { enable = true },
 	context_commentstring = {
-		enable = true
+		enable = true,
 	},
 	rainbow = {
 		enable = true,
 		extended_mode = true,
 		max_file_lines = nil,
-	}
+	},
 })

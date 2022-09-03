@@ -7,7 +7,7 @@ monokai.setup({
 	palette = require("monokai").pro,
 	custom_hlgroups = {
 		Normal = {
-			bg = None,
+			bg = "None",
 		},
 		CursorLine = {
 			bg = "#211F22",
