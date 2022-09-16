@@ -138,6 +138,9 @@ return packer.startup(function(use)
 	-- Wakatime
 	use("wakatime/vim-wakatime")
 
+	-- Git Blame
+	use("f-person/git-blame.nvim")
+
 	-- Colorize
 	use({
 		"norcalli/nvim-colorizer.lua",
@@ -163,6 +166,13 @@ return packer.startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
 			require("todo-comments").setup({})
+		end,
+	})
+
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({})
 		end,
 	})
 
