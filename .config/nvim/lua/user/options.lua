@@ -30,3 +30,5 @@ vim.opt.termguicolors = true
 vim.cmd([[set iskeyword+=-]])
 vim.cmd("set wildignore+=*/vendor/**")
 vim.cmd("set wildignore+=*/node_modules/**")
+
+vim.api.nvim_create_user_command("RemoveDocBlock", [[%s,/\*\_.\{-}\*/,,g]], {})
