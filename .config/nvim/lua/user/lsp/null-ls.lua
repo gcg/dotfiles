@@ -12,7 +12,7 @@ local diagnostics = null_ls.builtins.diagnostics
 local completion = null_ls.builtins.completion
 
 null_ls.setup({
-	debug = true,
+	debug = false,
 	on_attach = function(client)
 		require("lsp-format").on_attach(client)
 	end,
