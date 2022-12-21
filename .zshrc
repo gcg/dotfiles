@@ -13,11 +13,11 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export HISTORY_IGNORE="(ls|cd|pwd|exit|vim|sudo reboot|history|cd -|cd ..)"
 
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -36,6 +36,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -109,6 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 alias vim="nvim"
@@ -130,7 +132,7 @@ alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias cloudsql="$HOME/Documents/PoltioSecrets/cloud_sql_proxy -instances=poltio-164412:europe-west1:rds-to-sql-final=tcp:3306"
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
-alias backup="tar -p -cvf backup.tar .ssh .aws .config/nvim .tmux.conf .wakatime.cfg .zshrc .gnupg .gitconfig .zsh_history .config/wtf .config/gh .zshenv .config/kitty .alacritty.yml"
+alias backup="tar -p -cvf backup.tar .ssh .aws .config .wakatime.cfg .zshrc .gnupg .gitconfig .zsh_history .zshenv "
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
 alias b="brew"
 alias bu='b update && b upgrade && b upgrade --cask --greedy && b cleanup -s && b autoremove && b doctor'
@@ -156,6 +158,7 @@ export GPG_TTY=$(tty)
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export PATH=$PATH:$GOPATH/bin
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -169,10 +172,11 @@ export ZK_NOTEBOOK_DIR=$HOME/Documents/Notes
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/gcg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/gcg/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/gcg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/gcg/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/gcg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
 
 # Auto complete kubectl pods, services, nodes etc... 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
@@ -180,3 +184,5 @@ if [ -f '/Users/gcg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/g
 # To support cmd right, cmd left navigation between words for alacritty 
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
