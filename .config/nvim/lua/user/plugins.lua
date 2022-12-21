@@ -58,6 +58,7 @@ return packer.startup(function(use)
 	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("p00f/nvim-ts-rainbow")
+	use("jwalton512/vim-blade")
 
 	-- for auto closing quotes and bracket pairs.
 	use("windwp/nvim-autopairs")
