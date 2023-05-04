@@ -141,6 +141,9 @@ return packer.startup(function(use)
 	-- Git Blame
 	use("f-person/git-blame.nvim")
 
+	-- improved quickfix
+	use("kevinhwang91/nvim-bqf")
+
 	-- Colorize
 	use({
 		"norcalli/nvim-colorizer.lua",
@@ -173,6 +176,26 @@ return packer.startup(function(use)
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({})
+		end,
+	})
+
+	-- surround
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	})
+
+	use({
+		"Wansmer/treesj",
+		requires = { "nvim-treesitter" },
+		config = function()
+			require("treesj").setup({--[[ your config ]]
+			})
 		end,
 	})
 

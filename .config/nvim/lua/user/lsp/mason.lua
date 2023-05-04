@@ -13,7 +13,7 @@ local lspconfig = require("lspconfig")
 local servers = {
 	"intelephense",
 	"jsonls",
-	"sumneko_lua",
+	"lua_ls",
 	"psalm",
 	"eslint",
 	"dockerls",
