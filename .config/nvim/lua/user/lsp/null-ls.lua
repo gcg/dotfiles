@@ -37,6 +37,7 @@ null_ls.setup({
 				end,
 			},
 		}),
+		formatting.blade_formatter,
 		diagnostics.php,
 		diagnostics.phpcs.with({
 			generator_opts = {
