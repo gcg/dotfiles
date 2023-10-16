@@ -80,7 +80,13 @@ return packer.startup(function(use)
 	})
 
 	-- File browser
-	use("kyazdani42/nvim-tree.lua")
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+	})
+
 	-- Comment strings for different languages
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
@@ -128,7 +134,6 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.0",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
@@ -175,7 +180,7 @@ return packer.startup(function(use)
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require("indent_blankline").setup({})
+			require("ibl").setup()
 		end,
 	})
 
@@ -196,6 +201,15 @@ return packer.startup(function(use)
 		config = function()
 			require("treesj").setup({--[[ your config ]]
 			})
+		end,
+	})
+
+	-- tailwind colors
+	use({
+		"themaxmarchuk/tailwindcss-colors.nvim",
+		module = "tailwindcss-colors",
+		config = function()
+			require("tailwindcss-colors").setup()
 		end,
 	})
 
