@@ -135,10 +135,14 @@ alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
 alias backup="tar -p -cvf backup.tar .ssh .aws .config .wakatime.cfg .zshrc .gnupg .gitconfig .zsh_history .zshenv "
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
 alias b="brew"
-alias bu='b update && b upgrade && b upgrade --cask --greedy && b cleanup -s && b autoremove && b doctor'
 alias k="kubectl"
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias artisan='php artisan'
+alias poltioApiScheduler='kubectl exec --stdin --tty $(kubectl get pod -l app=api-scheduler -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
+alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=api-worker -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
+alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-stage -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
+
+alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update && cargo install-update -af"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
@@ -165,6 +169,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/.tmux/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
 export ZK_NOTEBOOK_DIR=$HOME/Documents/Notes
 
 
@@ -186,3 +191,11 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Herd injected PHP binary.
+export PATH="/Users/gcg/Library/Application Support/Herd/bin/":$PATH
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/gcg/Library/Application Support/Herd/config/php/82/"
