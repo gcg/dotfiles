@@ -97,21 +97,21 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: SauceCodePro Nerd Font
+    family: SauceCodePro NF
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Medium
 
   # Bold font face
-  #bold:
-  # Font family
-  #
-  # If the bold family is not specified, it will fall back to the
-  # value specified for the normal font.
-  #family: Ubuntu Mono derivative Powerline
+  bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    #family: Ubuntu Mono
 
-  # The `style` can be specified to pick a specific face.
-  #style: Bold
+    # The `style` can be specified to pick a specific face.
+    style: Bold
 
   # Italic font face
   #italic:
@@ -262,7 +262,6 @@ working_directory: None
 # Alacritty will fall back to the WinPTY automatically if the ConPTY
 # backend cannot be initialized.
 enable_experimental_conpty_backend: false
-
 
 debug:
   # Display the time it takes to redraw each frame.
