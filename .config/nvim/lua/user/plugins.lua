@@ -134,7 +134,10 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/plenary.nvim" } },
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-github.nvim" },
+		},
 	})
 
 	-- Gitsigns
@@ -211,6 +214,24 @@ return packer.startup(function(use)
 		config = function()
 			require("tailwindcss-colors").setup()
 		end,
+	})
+
+	-- lazygit.
+	use({
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
+
+	-- vim notifications for fancy notifications
+	use({
+		"folke/noice.nvim",
+		requires = {
+			"rcarriga/nvim-notify",
+			"MunifTanjim/nui.nvim",
+		},
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim

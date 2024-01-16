@@ -30,6 +30,7 @@ configs.setup({
 		"vue",
 		"tsx",
 		"prisma",
+		"markdown_inline",
 	}, -- one of "all" or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	sync_install = true,
@@ -42,9 +43,6 @@ configs.setup({
 		enable = true,
 	},
 	indent = { enable = true },
-	context_commentstring = {
-		enable = true,
-	},
 	rainbow = {
 		enable = true,
 		extended_mode = true,
