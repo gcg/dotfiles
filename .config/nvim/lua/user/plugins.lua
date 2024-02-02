@@ -125,7 +125,7 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("lukas-reineke/lsp-format.nvim")
@@ -233,6 +233,8 @@ return packer.startup(function(use)
 			"MunifTanjim/nui.nvim",
 		},
 	})
+
+	use("stevearc/aerial.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
