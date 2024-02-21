@@ -81,7 +81,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws brew colorize command-not-found composer docker docker-compose golang history npm macos laravel5 zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git aws brew colorize command-not-found composer docker docker-compose golang history npm macos laravel5 zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,7 +117,8 @@ alias vim="nvim"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
 alias vimrc="vim ~/.config/nvim/init.lua"
-alias alacrc="vim ~/.config/alacritty/alacritty.yml"
+alias alacrc="vim ~/.config/alacritty/alacritty.toml"
+alias wezrc="vim ~/.config/wezterm/wezterm.lua"
 alias zkrc="vim ~/.config/zk/config.toml"
 alias tmuxrc="vim ~/.config/tmux/tmux.conf && tmux source-file ~/.config/tmux/tmux.conf"
 alias iftop="sudo iftop"
@@ -197,5 +198,24 @@ bindkey "^[[1;5C" forward-word
 export PATH="/Users/gcg/Library/Application Support/Herd/bin/":$PATH
 
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
 # Herd injected PHP 8.2 configuration.
 export HERD_PHP_82_INI_SCAN_DIR="/Users/gcg/Library/Application Support/Herd/config/php/82/"
+
+eval "$(zoxide init --cmd cd zsh)"
