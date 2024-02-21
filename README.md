@@ -1,15 +1,15 @@
 # dotfiles
 
-### Requirements 
+### Requirements
 
 `stow`
 
-https://www.gnu.org/software/stow/manual/stow.html 
+https://www.gnu.org/software/stow/manual/stow.html
 
-### restore 
+### restore
 
-`stow -d . -t $HOME`
+`stow . -t $HOME`
 
-or 
+or
 
-`stow --adopt -d . -t $HOME` if you want to adopt existing config files. 
+`stow --adopt . -t $HOME` if you want to adopt existing config files.
