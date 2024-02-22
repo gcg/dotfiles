@@ -8,6 +8,7 @@ vim.opt.copyindent = true
 vim.opt.hlsearch = true
 vim.opt.smartcase = true
 vim.opt.smartindent = true
+vim.opt.cindent = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
