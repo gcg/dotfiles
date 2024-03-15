@@ -20,7 +20,6 @@ null_ls.setup({
 		completion.spell,
 		formatting.stylua,
 		formatting.prettier,
-		formatting.eslint,
 		formatting.gofmt,
 		formatting.phpcbf.with({
 			generator_opts = {
@@ -38,7 +37,6 @@ null_ls.setup({
 			},
 		}),
 		formatting.blade_formatter,
-		diagnostics.php,
 		diagnostics.phpcs.with({
 			generator_opts = {
 				command = "./vendor/bin/phpcs",
@@ -86,6 +84,5 @@ null_ls.setup({
 				end,
 			},
 		}),
-		diagnostics.eslint,
 	},
 })
