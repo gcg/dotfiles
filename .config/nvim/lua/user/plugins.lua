@@ -241,6 +241,14 @@ return packer.startup(function(use)
 	-- create code snapshots
 	use("michaelrommel/nvim-silicon")
 
+	use({
+		"nvimdev/lspsaga.nvim",
+		after = "nvim-lspconfig",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
