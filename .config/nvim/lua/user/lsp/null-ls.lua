@@ -37,6 +37,7 @@ null_ls.setup({
 			},
 		}),
 		formatting.blade_formatter,
+		diagnostics.golangci_lint,
 		diagnostics.phpcs.with({
 			generator_opts = {
 				command = "./vendor/bin/phpcs",
