@@ -23,8 +23,8 @@ function updateWallpaper()
 		buildWallpapers()
 	end
 
-	local ri = math.random(#wallpapers)
-	local rwp = wallpapers[ri]
+	local ri = math.random(#wallpapers) -- get random index from all the file entries in our table
+	local rwp = wallpapers[ri] -- get the wallpaper at that random index
 
 	for i, s in ipairs(hs.screen.allScreens()) do
 		s:desktopImageURL("file://" .. wallpaperDirectory .. "/" .. rwp)
@@ -35,5 +35,3 @@ end
 -- timer config for wallpaper change in seconds
 wallpaperUpdater = hs.timer.new(300, updateWallpaper)
 wallpaperUpdater:start()
-
--- Random Wallpaper End
