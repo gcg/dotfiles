@@ -26,15 +26,15 @@ function updateWallpaper()
 	local ri = math.random(#wallpapers)
 	local rwp = wallpapers[ri]
 
-	screen = hs.screen.mainScreen()
-	screen:desktopImageURL("file://" .. wallpaperDirectory .. "/" .. rwp)
 	-- TODO: improve this to change all screens instead of main one
-
+	for i, s in ipairs(hs.screen.allScreens()) do
+		s:desktopImageURL("file://" .. wallpaperDirectory .. "/" .. rwp)
+	end
 	--hs.alert.show("Updating wallpaper with: " .. rwp)
 end
 
 -- timer config for wallpaper change in seconds
-wallpaperUpdater = hs.timer.new(30, updateWallpaper)
+wallpaperUpdater = hs.timer.new(10, updateWallpaper)
 wallpaperUpdater:start()
 
 -- Random Wallpaper End
