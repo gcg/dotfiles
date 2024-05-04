@@ -11,4 +11,4 @@ function reloadConfig(files)
 end
 myWatcher =
 	hs.pathwatcher.new(os.getenv("HOME") .. "/Work/src/github.com/gcg/dotfiles/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Config loaded")
+hs.alert.show("HammerSpoon Config Updated")
