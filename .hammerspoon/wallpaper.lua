@@ -3,7 +3,7 @@ wallpaperDirectory = os.getenv("HOME") .. "/Pictures/Wallpapers"
 wallpapers = {}
 -- find and pick a random picture from our wallpaper directory
 function buildWallpapers()
-	hs.alert.show("Building wallpapers")
+	--hs.alert.show("Building wallpapers")
 	wallpapers = {}
 	i = 0
 	for file in hs.fs.dir(wallpaperDirectory) do
@@ -26,7 +26,6 @@ function updateWallpaper()
 	local ri = math.random(#wallpapers)
 	local rwp = wallpapers[ri]
 
-	-- TODO: improve this to change all screens instead of main one
 	for i, s in ipairs(hs.screen.allScreens()) do
 		s:desktopImageURL("file://" .. wallpaperDirectory .. "/" .. rwp)
 	end
