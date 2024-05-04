@@ -143,7 +143,7 @@ alias poltioApiScheduler='kubectl exec --stdin --tty $(kubectl get pod -l app=ap
 alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=api-worker -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-stage -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 
-alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update && cargo install-update -af"
+alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
