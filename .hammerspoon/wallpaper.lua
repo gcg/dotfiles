@@ -34,7 +34,7 @@ function updateWallpaper()
 end
 
 -- timer config for wallpaper change in seconds
-wallpaperUpdater = hs.timer.new(10, updateWallpaper)
+wallpaperUpdater = hs.timer.new(300, updateWallpaper)
 wallpaperUpdater:start()
 
 -- Random Wallpaper End
