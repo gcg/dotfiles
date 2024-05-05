@@ -1,3 +1,5 @@
+local log = hs.logger.new("config-reloader", "debug")
+
 function reloadConfig(files)
 	doReload = false
 	for _, file in pairs(files) do
@@ -12,3 +14,5 @@ end
 myWatcher =
 	hs.pathwatcher.new(os.getenv("HOME") .. "/Work/src/github.com/gcg/dotfiles/.hammerspoon/", reloadConfig):start()
 hs.alert.show("HammerSpoon Config Updated")
+
+log.i("config file change dedected, config reloaded ")
