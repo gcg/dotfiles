@@ -1,7 +1,7 @@
 local log = hs.logger.new("config-reloader", "debug")
 
-function reloadConfig(files)
-	doReload = false
+local function reloadConfig(files)
+	local doReload = false
 	for _, file in pairs(files) do
 		if file:sub(-4) == ".lua" then
 			doReload = true
@@ -11,8 +11,9 @@ function reloadConfig(files)
 		hs.reload()
 	end
 end
-myWatcher =
-	hs.pathwatcher.new(os.getenv("HOME") .. "/Work/src/github.com/gcg/dotfiles/.hammerspoon/", reloadConfig):start()
+local configWatcher =
+	hs.pathwatcher.new(os.getenv("HOME") .. "/Work/src/github.com/gcg/dotfiles/.hammerspoon/", reloadConfig)
+configWatcher:start()
 hs.alert.show("HammerSpoon Config Updated")
 
 log.i("config file change dedected, config reloaded ")
