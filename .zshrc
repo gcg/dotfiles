@@ -139,8 +139,8 @@ alias b="brew"
 alias k="kubectl"
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias artisan='php artisan'
-alias poltioApiScheduler='kubectl exec --stdin --tty $(kubectl get pod -l app=api-scheduler -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
-alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=api-worker -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
+alias poltioApiScheduler='kubectl exec --stdin --tty $(kubectl get pod -l app=scheduler -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
+alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=worker -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-stage -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 
 alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update"
