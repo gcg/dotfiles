@@ -15,4 +15,6 @@ config.hide_tab_bar_if_only_one_tab = false -- dont hide the tab bar since we ne
 config.adjust_window_size_when_changing_font_size = false -- dont update window size when adjusting the font size
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE" -- merge window title bar with the tab bar so we save on space.
 
+config.window_background_opacity = 0.97 -- the teenage inside me really wants a transparent bg but it is not practical :/
+
 return config
