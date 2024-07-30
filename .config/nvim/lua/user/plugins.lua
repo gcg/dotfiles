@@ -110,6 +110,12 @@ return packer.startup(function(use)
 
 	-- Plugin that helps display a popup with the list of shortcuts
 	use("folke/which-key.nvim")
+	use({
+		"echasnovski/mini.icons",
+		config = function()
+			require("mini.icons").setup()
+		end,
+	})
 
 	-- Autocomplete
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
