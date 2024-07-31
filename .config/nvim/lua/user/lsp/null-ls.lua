@@ -38,6 +38,10 @@ null_ls.setup({
 		}),
 		formatting.blade_formatter,
 		diagnostics.golangci_lint,
+		diagnostics.phpstan.with({
+			command = "./vendor/bin/phpstan",
+			args = { "analyze", "--error-format", "json", "--no-progress", "$FILENAME" },
+		}),
 		diagnostics.phpcs.with({
 			generator_opts = {
 				command = "./vendor/bin/phpcs",
