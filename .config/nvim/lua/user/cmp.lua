@@ -110,7 +110,11 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{
+			name = "nvim_lsp",
+			max_item_count = 200,
+			keyword_pattern = [[\k\+]],
+		},
 		{
 			name = "buffer",
 			option = {
