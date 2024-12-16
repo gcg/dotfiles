@@ -19,7 +19,6 @@ local servers = {
 	"dockerls",
 	"gopls",
 	"html",
-	"pyright",
 	"rust_analyzer",
 	"tailwindcss",
 	"zk",
