@@ -258,6 +258,22 @@ return packer.startup(function(use)
 		"christoomey/vim-tmux-navigator",
 	})
 
+	-- nescroll
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup({
+				mappings = { -- Keys to be mapped to their corresponding default scrolling animation
+					"<C-u>",
+					"<C-d>",
+					"zt",
+					"zz",
+					"zb",
+				},
+			})
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
