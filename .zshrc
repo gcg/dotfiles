@@ -144,6 +144,8 @@ alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=worke
 alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-stage -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 
 alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update"
+alias vimdiff='nvim -d'
+alias notes="zk edit --interactive"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
