@@ -157,7 +157,7 @@ return {
 	{ "themaxmarchuk/tailwindcss-colors.nvim" },
 	{
 		"kdheepak/lazygit.nvim",
-		lazy = true,
+		lazy = false,
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
@@ -213,9 +213,6 @@ return {
 			theme = "Monokai Extended",
 			background = "#009eec",
 			to_clipboard = true,
-			output = function()
-				return "~/Desktop/" .. os.date("!%Y-%m-%dT%H-%M-%S") .. "_code.png"
-			end,
 			window_title = function()
 				return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
 			end,
