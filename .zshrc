@@ -131,7 +131,6 @@ alias inchrome="chromium --incognito"
 alias latestdocker='docker exec -it `docker ps -q --latest` /bin/sh'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
-alias cloudsql="$HOME/Documents/PoltioSecrets/cloud_sql_proxy -instances=poltio-164412:europe-west1:rds-to-sql-final=tcp:3306"
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
 alias backup="tar -p -cvf backup.tar .ssh .aws .config .wakatime.cfg .zshrc .gnupg .gitconfig .zsh_history .zshenv "
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
