@@ -145,6 +145,7 @@ alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-st
 alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update"
 alias vimdiff='nvim -d'
 alias notes="zk edit --interactive"
+alias lg="lazygit"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
