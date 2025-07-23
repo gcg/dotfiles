@@ -1,6 +1,6 @@
-local util = require 'lspconfig.util'
+local util = require("lspconfig.util")
 return {
-	root_dir = function (fname)
-		return util.root_pattern("psalm.xml")(fname)
-	end
+	root_dir = util.root_pattern("psalm.xml"),
+	cmd = { "psalm", "--language-server" },
+	filetypes = { "php" },
 }
