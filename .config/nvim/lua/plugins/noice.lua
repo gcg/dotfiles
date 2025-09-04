@@ -29,6 +29,7 @@ return {
 				background_colour = "#000000",
 				timeout = 3500,
 				stages = "static",
+				top_down = false,
 			},
 		},
 	},
