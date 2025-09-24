@@ -1,6 +1,7 @@
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
+vim.opt.mousescroll = "ver:1,hor:2"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.autoindent = true
