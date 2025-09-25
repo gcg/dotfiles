@@ -3,6 +3,6 @@ font-size = "14"
 adjust-cell-height = 20%
 font-thicken = true
 background-opacity = 0.97
-theme = "Monokai Soda"
+theme = "Monokai Remastered"
 confirm-close-surface = false
 quit-after-last-window-closed = true 
