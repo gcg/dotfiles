@@ -14,7 +14,7 @@ local servers = {
 	"intelephense",
 	"jsonls",
 	"lua_ls",
-	"psalm",
+	-- "psalm",
 	"eslint",
 	"dockerls",
 	"gopls",
