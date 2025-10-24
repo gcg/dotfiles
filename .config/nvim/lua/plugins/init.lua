@@ -30,13 +30,6 @@ return {
 
 	{ "editorconfig/editorconfig-vim" },
 
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {},
-		dependencies = "echasnovski/mini.icons",
-	},
-
 	{ "hrsh7th/nvim-cmp" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
