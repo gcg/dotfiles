@@ -26,8 +26,6 @@ return {
 
 	{ "JoosepAlviste/nvim-ts-context-commentstring" },
 
-	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-
 	{ "editorconfig/editorconfig-vim" },
 
 	{ "hrsh7th/nvim-cmp" },
