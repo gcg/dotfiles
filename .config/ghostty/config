@@ -1,5 +1,6 @@
-font-family = "SauceCodePro NFM"
-font-size = "14"
+font-family = "Myna"
+#font-family = "SauceCodePro NFM"
+font-size = "15"
 adjust-cell-height = 20%
 font-thicken = true
 background-opacity = 0.97
