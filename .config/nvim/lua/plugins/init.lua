@@ -1,14 +1,4 @@
 return {
-	{
-		"tanvirtin/monokai.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- load the colorscheme here
-			vim.cmd([[colorscheme monokai]])
-		end,
-		enabled = true,
-	},
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "nvim-treesitter/nvim-treesitter-context" },

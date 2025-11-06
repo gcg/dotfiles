@@ -4,7 +4,7 @@ return {
 	cmd = "Silicon",
 	main = "nvim-silicon",
 	opts = {
-		font = "SauceCodePro NF=18;SauceCodePro NFM=18",
+		font = "Myna=18;SauceCodePro NFM=18",
 		theme = "Monokai Extended",
 		background = "#009eec",
 		to_clipboard = true,
