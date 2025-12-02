@@ -1,10 +1,11 @@
-font-family = "Myna"
+font-family = "Myna Nerd Font"
 #font-family = "SauceCodePro NFM"
 font-size = "15"
 adjust-cell-height = 20%
 font-thicken = true
 background-opacity = 0.99
 #theme = "Monokai Remastered"
-theme = "Monokai Pro"
+# theme = "Monokai Pro"
+theme = Catppuccin Mocha
 confirm-close-surface = false
 quit-after-last-window-closed = true 

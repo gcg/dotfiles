@@ -146,6 +146,7 @@ alias update="brew update && brew outdated && brew upgrade && composer global up
 alias vimdiff='nvim -d'
 alias notes="zk edit --interactive"
 alias lg="lazygit"
+alias matrix="iamb -C ~/.config"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"

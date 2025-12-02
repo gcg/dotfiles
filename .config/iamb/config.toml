@@ -1,0 +1,49 @@
+[profiles.user]
+user_id = "@guney:matrix.org"
+
+[settings]
+default_room = "#nh-main:matrix.org"
+external_edit_file_suffix = ".md"
+log_level = "warn"
+message_shortcode_display = false
+open_command = ["my-open", "--file"]
+reaction_display = true
+reaction_shortcode_display = false
+read_receipt_display = true
+read_receipt_send = true
+request_timeout = 10000
+typing_notice_display = true
+typing_notice_send = true
+user_gutter_width = 30
+username_display = "username"
+
+[settings.image_preview]
+protocol.type = "halfblocks"
+protocol.font_size = [ 11, 26 ]
+
+[settings.notifications]
+enabled = true
+
+[settings.sort]
+rooms = ["favorite", "lowpriority", "unread", "name"]
+members = ["power", "id"]
+
+
+[layout]
+style = "config"
+
+[[layout.tabs]]
+window = "iamb://dms"
+
+[[layout.tabs]]
+window = "iamb://rooms"
+
+[[layout.tabs]]
+split = [
+    { "window" = "#iamb-users:0x.badd.cafe" },
+    { "window" = "#iamb-dev:0x.badd.cafe" }
+]
+
+[dirs]
+downloads = "/Users/gcg/Downloads/"
+
