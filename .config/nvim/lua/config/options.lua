@@ -29,7 +29,7 @@ vim.opt.updatetime = 300
 vim.opt.wrap = true
 vim.opt.termguicolors = true
 vim.opt.spell = true
-vim.opt.spelllang = "en_us"
+vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel"
 
 vim.cmd([[set iskeyword+=-]])

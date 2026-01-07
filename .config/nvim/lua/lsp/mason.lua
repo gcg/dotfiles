@@ -8,8 +8,6 @@ if not config_ok then
 	return
 end
 
--- local lspconfig = require("lspconfig")
-
 local servers = {
 	"intelephense",
 	"jsonls",
@@ -24,6 +22,7 @@ local servers = {
 	"zk",
 	"prismals",
 	"ts_ls",
+	"harper_ls",
 }
 
 for _, server in pairs(servers) do
@@ -36,7 +35,6 @@ for _, server in pairs(servers) do
 	if has_custom_opts then
 		opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
 	end
-	-- lspconfig[server].setup(opts)
 	vim.lsp.config(server, opts)
 end
 
