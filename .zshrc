@@ -147,6 +147,7 @@ alias vimdiff='nvim -d'
 alias notes="zk edit --interactive"
 alias lg="lazygit"
 alias matrix="iamb -C ~/.config"
+alias flexget='~/.flexget/env/bin/flexget'
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
