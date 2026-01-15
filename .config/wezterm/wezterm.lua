@@ -37,6 +37,7 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 -- the 8th grader inside me really wants a transparent bg but it is not practical :/
 config.window_background_opacity = 0.99
+
 -- set padding from top especially so we have some nice layout
 config.window_padding = {
 	top = 60,
@@ -46,6 +47,6 @@ config.window_padding = {
 }
 
 -- don't bother asking when we quit.
-config.config.window_close_confirmation = "NeverPrompt"
+config.window_close_confirmation = "NeverPrompt"
 
 return config
