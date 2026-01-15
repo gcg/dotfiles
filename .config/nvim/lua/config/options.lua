@@ -28,9 +28,9 @@ vim.opt.timeoutlen = 1000
 vim.opt.updatetime = 300
 vim.opt.wrap = true
 vim.opt.termguicolors = true
-vim.opt.spell = true
-vim.opt.spelllang = "en"
-vim.opt.spelloptions = "camel"
+-- vim.opt.spell = true
+-- vim.opt.spelllang = "en"
+-- vim.opt.spelloptions = "camel"
 
 vim.cmd([[set iskeyword+=-]])
 vim.cmd("set wildignore+=*/vendor/**")

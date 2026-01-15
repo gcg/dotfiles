@@ -22,7 +22,6 @@ local servers = {
 	"zk",
 	"prismals",
 	"ts_ls",
-	"harper_ls",
 }
 
 for _, server in pairs(servers) do
