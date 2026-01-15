@@ -26,7 +26,7 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE" -- merge window title ba
 config.window_background_opacity = 0.99 -- the 8th grader inside me really wants a transparent bg but it is not practical :/
 
 config.window_padding = {
-	top = 30,
+	top = 60,
 	right = 0,
 	left = 0,
 	bottom = 0,
