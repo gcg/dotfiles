@@ -40,7 +40,7 @@ config.window_background_opacity = 0.99
 
 -- set padding from top especially so we have some nice layout
 config.window_padding = {
-	top = 60,
+	top = "1.5cell",
 	right = 0,
 	left = 0,
 	bottom = 0,
