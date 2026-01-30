@@ -12,6 +12,7 @@ config.font = wezterm.font_with_fallback({
 	"SauceCodePro NFM",
 	"Myna",
 	"SF Pro Text",
+	"JetBrains Mono",
 })
 config.font_size = 16
 config.freetype_load_target = "HorizontalLcd"
