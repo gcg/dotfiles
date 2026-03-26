@@ -142,10 +142,10 @@ alias poltioApiScheduler='kubectl exec --stdin --tty $(kubectl get pod -l app=sc
 alias poltioApiWorker='kubectl exec --stdin --tty $(kubectl get pod -l app=worker -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 alias poltioApiStage='kubectl exec --stdin --tty $(kubectl get pod -l app=api-stage -o jsonpath="{.items[0].metadata.name}") -- /bin/sh'
 
-alias updateWezTerm="brew upgrade --cask wezterm@nightly --no-quarantine --greedy-latest"
+alias updateWezTerm="brew upgrade --cask wezterm@nightly --greedy-latest"
 alias updateGcloud="gcloud components update"
 alias updateGh="gh extension upgrade --all"
-alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update && omz update && updateWezTerm && updateGcloud && updateGh"
+alias update="brew update && brew outdated && brew upgrade && composer global update && npm update -g && go-global-update && omz update && updateGcloud && updateGh"
 alias vimdiff='nvim -d'
 alias notes="zk edit --interactive"
 alias lg="lazygit"
