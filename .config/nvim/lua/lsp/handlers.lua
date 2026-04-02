@@ -71,9 +71,6 @@ end
 
 M.on_attach = function(client, bufnr)
 	-- vim.notify(client.name .. " starting...")
-	if client.name ~= "null-ls" then
-		client.server_capabilities.document_formatting = false
-	end
 
 	if client.name == "tailwindcss" then
 		require("tailwindcss-colors").buf_attach(bufnr)

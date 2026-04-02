@@ -27,7 +27,6 @@ return {
 	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
 
 	{ "neovim/nvim-lspconfig" },
-	{ "nvimtools/none-ls.nvim" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "lukas-reineke/lsp-format.nvim" },
