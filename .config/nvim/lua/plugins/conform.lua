@@ -18,5 +18,16 @@ return {
 			timeout_ms = 1000,
 			lsp_format = "fallback",
 		},
+		formatters = {
+			phpcbf = {
+				command = function()
+					local local_bin = vim.fn.getcwd() .. "/vendor/bin/phpcbf"
+					if vim.fn.executable(local_bin) == 1 then
+						return local_bin
+					end
+					return "phpcbf"
+				end,
+			},
+		},
 	},
 }

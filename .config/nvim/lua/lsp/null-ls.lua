@@ -16,21 +16,6 @@ null_ls.setup({
 		require("lsp-format").on_attach(client)
 	end,
 	sources = {
-		formatting.phpcbf.with({
-			generator_opts = {
-				command = "./vendor/bin/phpcbf",
-				args = {
-					"-q",
-					"--stdin-path=$FILENAME",
-					"-",
-				},
-				to_stdin = true,
-				check_exit_code = function(code)
-					-- phpcbf return a 1 or 2 exit code if it detects warnings or errors
-					return code <= 2
-				end,
-			},
-		}),
 		formatting.blade_formatter,
 		diagnostics.golangci_lint,
 		diagnostics.phpstan.with({
