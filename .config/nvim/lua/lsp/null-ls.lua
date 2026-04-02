@@ -9,7 +9,6 @@ local h = require("null-ls.helpers")
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
-local completion = null_ls.builtins.completion
 
 null_ls.setup({
 	debug = false,
@@ -17,10 +16,6 @@ null_ls.setup({
 		require("lsp-format").on_attach(client)
 	end,
 	sources = {
-		completion.spell,
-		formatting.stylua,
-		formatting.prettier,
-		formatting.gofmt,
 		formatting.phpcbf.with({
 			generator_opts = {
 				command = "./vendor/bin/phpcbf",
