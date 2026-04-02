@@ -1,7 +1,5 @@
 return {
 	{ "nvim-lua/plenary.nvim" },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "jwalton512/vim-blade" },
 
 	{ "numToStr/Comment.nvim" },
@@ -73,15 +71,6 @@ return {
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	},
-	{
-		"Wansmer/treesj",
-		keys = { "<space>m", "<space>j", "<space>s" },
-		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
-		config = function()
-			require("treesj").setup({--[[ your config ]]
 			})
 		end,
 	},
