@@ -13,15 +13,6 @@ return {
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "lukas-reineke/lsp-format.nvim" },
 
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-github.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-	},
-
 	{ "wakatime/vim-wakatime" },
 	{ "f-person/git-blame.nvim" },
 	{ "kevinhwang91/nvim-bqf" },
