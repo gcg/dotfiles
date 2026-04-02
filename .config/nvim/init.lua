@@ -1,7 +1,6 @@
 require("config.options")
 require("config.keymaps")
 require("config.lazy")
-require("user.autopairs")
 require("user.treesitter")
 require("user.cmp")
 require("lsp")
