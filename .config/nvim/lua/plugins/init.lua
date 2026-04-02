@@ -22,7 +22,6 @@ return {
 		},
 	},
 
-	{ "lewis6991/gitsigns.nvim" },
 	{ "wakatime/vim-wakatime" },
 	{ "f-person/git-blame.nvim" },
 	{ "kevinhwang91/nvim-bqf" },

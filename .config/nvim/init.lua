@@ -1,8 +1,4 @@
 require("config.options")
 require("config.keymaps")
 require("config.lazy")
-require("user.treesitter")
 require("lsp")
-require("user.telescope")
-require("user.gitsigns")
-require("user.zk")
