@@ -9,6 +9,9 @@ return {
 			go = { "goimports", "gofumpt" },
 			typescript = { "prettierd" },
 			javascript = { "prettierd" },
+			php = { "phpcbf" },
+			json = { "jq" },
+			blade = { "blade-formatter" },
 		},
 		default_format_opts = {
 			-- Allow formatting from LSP server if no dedicated formatter is available

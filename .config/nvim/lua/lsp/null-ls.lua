@@ -16,7 +16,6 @@ null_ls.setup({
 		require("lsp-format").on_attach(client)
 	end,
 	sources = {
-		formatting.blade_formatter,
 		diagnostics.golangci_lint,
 		diagnostics.phpstan.with({
 			command = "./vendor/bin/phpstan",
