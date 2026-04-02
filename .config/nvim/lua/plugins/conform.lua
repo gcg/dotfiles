@@ -9,7 +9,7 @@ return {
 			go = { "goimports", "gofumpt" },
 			typescript = { "prettierd" },
 			javascript = { "prettierd" },
-			php = { "phpcbf" },
+			php = { "phpcbf", "php_cs_fixer" },
 			json = { "jq" },
 			blade = { "blade-formatter" },
 		},
