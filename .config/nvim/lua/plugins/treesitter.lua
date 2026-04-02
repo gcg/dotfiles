@@ -15,68 +15,50 @@ return {
 		},
 	},
 	config = function()
-		local languages = {
-			-- These are already pre-installed with Neovim. Used as an example.
-			"lua",
-			"vimdoc",
-			"markdown",
-			-- Add here more languages with which you want to use tree-sitter
-			-- To see available languages:
-			-- - Execute `:=require('nvim-treesitter').get_available()`
-			-- - Visit 'SUPPORTED_LANGUAGES.md' file at
-			--   https://github.com/nvim-treesitter/nvim-treesitter/blob/main
-			"php",
-			"javascript",
-			"rust",
-			"html",
-			"bash",
-			"cmake",
-			"css",
-			"dart",
-			"dockerfile",
-			"go",
-			"graphql",
-			"http",
-			"json",
-			"make",
-			"python",
-			"regex",
-			"ruby",
-			"sql",
-			"typescript",
-			"yaml",
-			"vue",
-			"tsx",
-			"prisma",
-			"markdown_inline",
-		}
-		local isnt_installed = function(lang)
-			return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
-		end
-		local to_install = vim.tbl_filter(isnt_installed, languages)
-		if #to_install > 0 then
-			require("nvim-treesitter").install(to_install)
-		end
+		require("nvim-treesitter.configs").setup({
+			-- Standardize your list into ensure_installed
+			ensure_installed = {
+				"lua",
+				"vimdoc",
+				"markdown",
+				"php",
+				"javascript",
+				"rust",
+				"html",
+				"bash",
+				"cmake",
+				"css",
+				"dart",
+				"dockerfile",
+				"go",
+				"graphql",
+				"http",
+				"json",
+				"make",
+				"python",
+				"regex",
+				"ruby",
+				"sql",
+				"typescript",
+				"yaml",
+				"vue",
+				"tsx",
+				"prisma",
+				"markdown_inline",
+			},
 
-		-- Enable tree-sitter after opening a file for a target language
-		local filetypes = {}
-		for _, lang in ipairs(languages) do
-			for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-				table.insert(filetypes, ft)
-			end
-		end
+			-- Automatically install missing parsers when entering a buffer
+			auto_install = true,
 
-		local ts_indent_langs = { "php" }
+			highlight = {
+				enable = true,
+				-- Set to false so standard vim syntax doesn't clash with treesitter
+				additional_vim_regex_highlighting = false,
+			},
 
-		local ts_start = function(ev)
-			vim.treesitter.start(ev.buf)
-			if vim.tbl_contains(ts_indent_langs, vim.bo[ev.buf].filetype) then
-				vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			end
-		end
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = filetypes,
-			callback = ts_start,
+			indent = {
+				enable = true, -- Safely enables Treesitter indentation
+			},
 		})
 	end,
 }
