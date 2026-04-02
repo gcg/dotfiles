@@ -9,7 +9,7 @@ return {
 			go = { "goimports", "gofumpt" },
 			typescript = { "prettierd" },
 			javascript = { "prettierd" },
-			php = { "phpcbf", "php_cs_fixer" },
+			php = { "php_cs_fixer" },
 			json = { "jq" },
 			blade = { "blade-formatter" },
 		},
@@ -20,17 +20,6 @@ return {
 		format_on_save = {
 			timeout_ms = 1000,
 			lsp_format = "fallback",
-		},
-		formatters = {
-			phpcbf = {
-				command = function()
-					local local_bin = vim.fn.getcwd() .. "/vendor/bin/phpcbf"
-					if vim.fn.executable(local_bin) == 1 then
-						return local_bin
-					end
-					return "phpcbf"
-				end,
-			},
 		},
 	},
 }
