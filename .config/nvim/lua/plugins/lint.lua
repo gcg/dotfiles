@@ -11,6 +11,9 @@ return {
 			php = { "phpstan", "phpcs", "psalm", "php" },
 		}
 
+		local psalm = require("lint").linters.psalm
+		psalm.ignore_exitcode = true
+
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
