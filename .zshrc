@@ -151,6 +151,7 @@ alias notes="zk edit --interactive"
 alias lg="lazygit"
 alias matrix="iamb -C ~/.config"
 alias flexget='~/.flexget/env/bin/flexget'
+alias myip="curl -s ifconfig.me && echo"
 
 export GOPATH=$HOME/Work
 export LANG="en_US.UTF-8"
@@ -226,3 +227,15 @@ if [ -f '/Users/gcg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+btop() {
+  local theme
+  if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+    theme="kanagawa-dragon"
+  else
+    theme="kanagawa-lotus"
+  fi
+  sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" ~/.config/btop/btop.conf
+  command btop "$@"
+}
