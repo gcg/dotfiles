@@ -239,3 +239,8 @@ btop() {
   sed -i '' "s/^color_theme = .*/color_theme = \"$theme\"/" ~/.config/btop/btop.conf
   command btop "$@"
 }
+
+# Load local environment variables and secrets (Not tracked in Git)
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
