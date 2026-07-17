@@ -228,6 +228,35 @@ if [ -f '/Users/gcg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
+eval "$(gh completion -s zsh)"
+
+ghpr() {
+    # 1. Check if an open PR already exists for the current branch
+    # We grab the URL so we can display it to the user if it exists
+    local existing_pr
+    existing_pr=$(gh pr view --json url -q '.url' 2>/dev/null)
+    
+    if [[ -n "$existing_pr" ]]; then
+        echo "Aborted: An open pull request already exists for this branch."
+        echo "View it here: $existing_pr"
+        return 1
+    fi
+
+    # 2. Grab all local and remote branches and pipe to fuzzy finder
+    local target_branch=$(git branch -a --format='%(refname:short)' | grep -v 'origin/HEAD' | sort -u | fzf --prompt="Select Base Branch: ")
+
+    # 3. If a branch was selected (user didn't press ESC)
+    if [[ -n "$target_branch" ]]; then
+        # Strip 'origin/' prefix if they selected a remote-only branch
+        target_branch=${target_branch#origin/}
+        echo "Opening PR against $target_branch..."
+        
+        # Run your exact command
+        gh pr create -a @me -e -B "$target_branch"
+    else
+        echo "PR creation aborted."
+    fi
+}
 
 btop() {
   local theme
