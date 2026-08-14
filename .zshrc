@@ -231,10 +231,14 @@ if [ -f '/Users/gcg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/U
 eval "$(gh completion -s zsh)"
 
 ghpr() {
-    # 1. Check if an open PR already exists for the current branch
-    # We grab the URL so we can display it to the user if it exists
+    # 1. Get the current active branch
+    local current_branch
+    current_branch=$(git branch --show-current)
+    
+    # 2. Check explicitly for an OPEN pull request tied to this branch
     local existing_pr
-    existing_pr=$(gh pr view --json url -q '.url' 2>/dev/null)
+    # --jq '.[].url' returns nothing (empty string) if no open PRs are found
+    existing_pr=$(gh pr list --head "$current_branch" --state open --json url --jq '.[].url' 2>/dev/null | head -n 1)
     
     if [[ -n "$existing_pr" ]]; then
         echo "Aborted: An open pull request already exists for this branch."
@@ -242,10 +246,10 @@ ghpr() {
         return 1
     fi
 
-    # 2. Grab all local and remote branches and pipe to fuzzy finder
+    # 3. Grab all local and remote branches and pipe to fuzzy finder
     local target_branch=$(git branch -a --format='%(refname:short)' | grep -v 'origin/HEAD' | sort -u | fzf --prompt="Select Base Branch: ")
 
-    # 3. If a branch was selected (user didn't press ESC)
+    # 4. If a branch was selected (user didn't press ESC)
     if [[ -n "$target_branch" ]]; then
         # Strip 'origin/' prefix if they selected a remote-only branch
         target_branch=${target_branch#origin/}
@@ -273,3 +277,7 @@ btop() {
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/gcg/.local/bin:$PATH"
