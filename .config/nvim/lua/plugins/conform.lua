@@ -12,6 +12,7 @@ return {
 			php = { "php_cs_fixer" },
 			json = { "jq" },
 			blade = { "blade-formatter" },
+			swift = { "swiftformat" },
 		},
 		default_format_opts = {
 			-- Allow formatting from LSP server if no dedicated formatter is available
