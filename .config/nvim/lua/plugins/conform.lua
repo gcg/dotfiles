@@ -12,7 +12,14 @@ return {
 			php = { "php_cs_fixer" },
 			json = { "jq" },
 			blade = { "blade-formatter" },
+			-- ios
 			swift = { "swiftformat" },
+			-- android
+			kotlin = { "ktlint" },
+			java = { "google-java-format" },
+			xml = { "xmllint" },
+			toml = { "taplo" },
+			groovy = { "npm-groovy-lint" },
 		},
 		default_format_opts = {
 			-- Allow formatting from LSP server if no dedicated formatter is available
