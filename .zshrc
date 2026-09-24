@@ -273,6 +273,20 @@ btop() {
   command btop "$@"
 }
 
+# Auto-clear a tmux pane's visible screen (scrollback preserved) a while
+# after any foreground command exits, so leftover output doesn't linger
+# forever but is still scrollable.
+autoload -Uz add-zsh-hook
+
+_pane_autoclear_delay=25
+
+_pane_autoclear_precmd() {
+  [[ -z "$TMUX_PANE" ]] && return
+  ( sleep "$_pane_autoclear_delay"; tmux send-keys -t "$TMUX_PANE" C-l 2>/dev/null ) &!
+}
+
+add-zsh-hook precmd _pane_autoclear_precmd
+
 # Load local environment variables and secrets (Not tracked in Git)
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
