@@ -282,7 +282,9 @@ _pane_autoclear_delay=25
 
 _pane_autoclear_precmd() {
   [[ -z "$TMUX_PANE" ]] && return
+  [[ -n "$_pane_autoclear_pid" ]] && kill "$_pane_autoclear_pid" 2>/dev/null
   ( sleep "$_pane_autoclear_delay"; tmux send-keys -t "$TMUX_PANE" C-l 2>/dev/null ) &!
+  _pane_autoclear_pid=$!
 }
 
 add-zsh-hook precmd _pane_autoclear_precmd
