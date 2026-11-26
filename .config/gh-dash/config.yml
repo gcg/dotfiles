@@ -1,3 +1,6 @@
+include:
+  - ~/.cache/gh-dash-theme.yml
+
 prSections:
 - title: Needs My Review
   filters: is:open review-requested:@me
@@ -58,28 +61,6 @@ theme:
   ui:
     table:
       showSeparator: true
-  # ANSI indices, so colors follow ghostty's Kanagawa Lotus/Dragon palette.
-  # text.primary, text.inverted and background.selected stay on gh-dash's
-  # adaptive light/dark defaults: no single ANSI slot reads well in both.
-  colors:
-    text:
-      secondary: "4"
-      faint: "8"
-      warning: "3"
-      success: "2"
-      error: "1"
-      actor: "5"
-    border:
-      primary: "8"
-      secondary: "8"
-      faint: "8"
-    icon:
-      newcontributor: "6"
-      contributor: "4"
-      collaborator: "5"
-      member: "3"
-      owner: "11"
-      unknownrole: "8"
 
 pager:
   diff: ""

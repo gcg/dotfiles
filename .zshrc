@@ -273,6 +273,13 @@ btop() {
   command btop "$@"
 }
 
+gh() {
+  if [[ "$1" == "dash" && -x ~/.config/gh-dash/sync-theme.sh ]]; then
+    ~/.config/gh-dash/sync-theme.sh auto
+  fi
+  command gh "$@"
+}
+
 # Auto-clear a tmux pane's visible screen (scrollback preserved) a while
 # after any foreground command exits, so leftover output doesn't linger
 # forever but is still scrollable.

@@ -1,0 +1,25 @@
+# Kanagawa Lotus theme for gh-dash (matches Ghostty's Kanagawa Lotus palette)
+theme:
+  colors:
+    text:
+      primary: "#545464"
+      secondary: "#4d699b"
+      inverted: "#f2ecbc"
+      faint: "#8a8980"
+      warning: "#cc6d00"
+      success: "#6f894e"
+      error: "#c84053"
+      actor: "#b35b79"
+    background:
+      selected: "#e5ddb0"
+    border:
+      primary: "#8a8980"
+      secondary: "#d5cea3"
+      faint: "#e5ddb0"
+    icon:
+      newcontributor: "#597b75"
+      contributor: "#4d699b"
+      collaborator: "#b35b79"
+      member: "#cc6d00"
+      owner: "#836f4a"
+      unknownrole: "#8a8980"

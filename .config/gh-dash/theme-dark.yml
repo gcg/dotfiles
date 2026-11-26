@@ -1,0 +1,25 @@
+# Kanagawa Dragon theme for gh-dash (matches Ghostty's Kanagawa Dragon palette)
+theme:
+  colors:
+    text:
+      primary: "#c5c9c5"
+      secondary: "#8ba4b0"
+      inverted: "#181616"
+      faint: "#a6a69c"
+      warning: "#e6c384"
+      success: "#87a987"
+      error: "#e46876"
+      actor: "#a292a3"
+    background:
+      selected: "#282727"
+    border:
+      primary: "#625e5a"
+      secondary: "#393836"
+      faint: "#282727"
+    icon:
+      newcontributor: "#8ea4a2"
+      contributor: "#7fb4ca"
+      collaborator: "#a292a3"
+      member: "#e6c384"
+      owner: "#c4b28a"
+      unknownrole: "#a6a69c"
