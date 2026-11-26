@@ -132,7 +132,7 @@ alias latestdocker='docker exec -it `docker ps -q --latest` /bin/sh'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 alias kevents="kubectl get events --sort-by='{.lastTimestamp}'"
-alias backup="tar -p -cvf backup.tar .ssh .aws .config .wakatime.cfg .zshrc .gnupg .gitconfig .zsh_history .zshenv "
+alias backup='tar -p -czvf "backup-$(date +%Y-%m-%d).tar.gz" --exclude=.kube/cache --exclude=.kube/http-cache --exclude=.gemini/tmp --exclude=.claude/cache --exclude=.claude/paste-cache --exclude=.claude/shell-snapshots -C ~ .ssh .aws .config .wakatime.cfg .zshrc .zshrc.local .gnupg .gitconfig .zsh_history .zshenv .zprofile .p10k.zsh .fzf.zsh .netrc .sentryclirc .kube .gemini .claude .claude.json'
 alias cupdate="COMPOSER_MEMORY_LIMIT=-1 composer update"
 alias b="brew"
 alias k="kubectl"
